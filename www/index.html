@@ -26,42 +26,44 @@
 </head>
 
 <body>
-
+    <div class="main">
     <div class="navbar">
             <div class="navMenuImage"><img src="img/Frameworks/menu-icon.png" alt="Menu"></div>
             <div class="navTitle">Ecommerce18</div>
             <div class="myProfileImage" id="profileImage"><img src="img/Frameworks/my-profile-icon.png" alt="ProfileImage"></div>
     </div>
     <div class="post-setter">
-        <!--S
-           Current basic structure of a post
-           <div class="posts-item">
+        <!--
+        Current basic structure of a post
+        <div class="posts-item">
             <p id="post-title">Hello this is the post title</p>
             <p id="post-creator">By: admin</p>
             <p div="post-content">Hello this is were everything of your wildest dreams go to now ofj wirjhfuhffrwefergerg</div>
         </div>-->
         <script>
-      
+      //Displays posts on home page
       $(document).ready(function() {
-          console.log("hello");
-    $.ajax({
-        type: "GET", dataType: "json", url: "http://ecommerce18.xyz/wp-json/wp/v2/posts",
-        success: function (data){
-            getPosts = data;
-            console.log(getPosts); //https://stackoverflow.com/questions/13782698/get-total-number-of-items-on-json-object
-            for (i =0; i < Object.keys(getPosts).length; i++){
-                var id = getPosts[i].id;
-                var content = getPosts[i].content.rendered;
-                var author = getPosts[i].pwapp_author.name;
-                var title = getPosts[i].title.rendered;
-                createPost(id, author, title, content);
-                console.log(content);
-            }
-        }});
+        getPostData();
+            });
+      $('navMenuImage').click(function(){
+          
       });
-      
     </script>
+    
     </div>
+    <div class="navMenuContainer"><nav class="navMenu">
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">Shop</a></li>
+            <li><a href="">My Account</a></li>
+        </ul>
+            <div class="divider"></div>
+            <!--<script>
+        $.ajax
+        </script>-->
+        </nav>
+        </div>
+    
     <!--<div class="app">
        
         <h1>PhoneGap</h1>
