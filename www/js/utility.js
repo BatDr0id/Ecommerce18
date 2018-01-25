@@ -1,6 +1,7 @@
+var hurl = "https://ecommerce18.xyz";
 function getPostData(){
     $.ajax({
-        type: "GET", dataType: "json", url: "http://ecommerce18.xyz/wp-json/wp/v2/posts",
+        type: "GET", dataType: "json", url: hurl + "/wp-json/wp/v2/posts",
         success: function (data){
             getPosts = data;
             console.log(data);
