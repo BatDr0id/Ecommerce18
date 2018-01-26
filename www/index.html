@@ -57,22 +57,7 @@
             <div class="divider"></div>
             <script>
             $(document).ready(function(){
-                var menu;
-                $.ajax({
-                    type: "GET", queryStringAuth: true, dataType: "json",queryStringAuth: true,    crossDomain: true,
-
-                    beforeSend: function ( xhr ) {
-        xhr.setRequestHeader( 'Authorization', 'Basic ' + Base64.encode( 'test:password' ) );
-    },
-                    url: hurl + "/wp-json/wc/v2/products/categories",
-            
-                    'Content-Type':'application/json',
-                    success: function (data){
-            menu = data;
-                    console.log(menu);
-            //https://stackoverflow.com/questions/13782698/get-total-number-of-items-on-json-object
-       }})
-                
+                getProductMenu();
             })
             </script>
         </nav>
