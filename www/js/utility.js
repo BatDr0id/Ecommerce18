@@ -22,6 +22,15 @@ function createPost(id, author, title, content){
         +"<p id='post-creator'>By: "+ author +"</p>"
         +"<div id='post-content'>"+ content +"</div></div>");
 }
+/*function createProduct(id, img, name, price, description, linkToProduct )
+{
+    $('.post-setter').append(
+        "<div class='posts-item' id='"+id+"'>"
+        +"<img src =" + img + ">"
+        +"<p id='post-title'> <a href=" + linkToProduct + ">" name + "</a></p>"
+        +"<p id='post-creator'>Price: "+ price +"</p>"
+        +"<div id='post-content'>"+ description +"</div></div>");
+}*/
 function createMenu(){
     $(".main").append(
     "<div class='navMenuContainer'>"+
