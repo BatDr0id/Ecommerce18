@@ -60,9 +60,7 @@ function createAccountMenu() {
         $(".navMenuContainer").empty().remove();
 });
 }
-/*functiom createMyAccountMenu(){
-    $(".main").append("")
-}*/
+
 function getProductMenu(){
     var zero = 0;
     var pmArray = [];
