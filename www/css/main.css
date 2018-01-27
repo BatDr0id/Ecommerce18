@@ -61,7 +61,6 @@ table {
     position: fixed;
     border-bottom: .25em solid #ffffff;
 }
-
 .navTitle {
     float: inherit;
     margin: auto;
@@ -71,28 +70,23 @@ table {
     font-family: Ebrima;
     font-size: 1em;
 }
-
 .navbar img {
     padding: 1em;
     width: 1.5em;
     height: 1.5em;
     float: left;
 }
-
 .myProfileImage {
     position: relative;
     bottom: 3.5em;
     float: right;
 }
-
 .post-setter {
     margin: auto;
     max-width: 50em;
     min-width: 10em;
-    margin: 3.25em auto  0 auto;
-    
+    margin: 3.72em auto  0 auto;
 }
-
 .posts-item {
     padding: 2.5em;
     height: auto;
@@ -102,30 +96,21 @@ table {
     font-family: Ebrima;
     margin-top: .25em;
 }
-
 #post-title {
     font-weight: 600;
     float: left;
 }
-
 #post-creator {
     line-height: 1.5;
     font-size: .75em;
     float: left;
     margin: 0em .5em;
 }
-
 #post-content {
     font-size: .75em;
     margin: 2.25em 0 0 0;
 }
-
-
-
-
-
 .navMenuContainer {
-    opacity: 1;
     margin: 0 auto;
     left: 0;
     right: 0;
@@ -134,21 +119,19 @@ table {
     min-width: 10em;
     height: 100%;
     position: fixed;
-    z-index: 99;
-    overflow-y: auto;
+    z-index:1 ;
 }
-
 .navMenu {
     padding: 2em 2em 2em 2em;
     position: relative;
     margin: 0;
-    height: auto;
+    height: 100%;
     max-width: 15em;
     min-width: 3em;
     background: black;
     color: white;
+    overflow-y: auto;
 }
-
 .navMenu li{
     padding: .5em;
     text-decoration: none;
@@ -160,12 +143,12 @@ table {
     text-decoration: none;
     color: white
 }
-
 .main {
-    position: relative;}
-
+    position: relative;
+}
 .divider {
     background-color: white;
     height: .1em;
     margin-top: 1em;
+    margin-bottom: 1em;
 }
