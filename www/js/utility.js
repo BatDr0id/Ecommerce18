@@ -47,6 +47,22 @@ function createMenu(){
     $(".navMenuContainer").click(function(){
         $(".navMenuContainer").empty().remove();
 });}
+
+function createAccountMenu() {
+    $(".main").append("<div class='navMenuContainer'><div class='navProfile'>"+
+            "<div class='myProfileImage'><img src='/res/dev/DSCN1671-copy1.png' alt=''></div>"+
+            "<div class='myAccountName'>Testy Tester</div><div class='divider'></div>"+
+            "<div class='accountMenu'><div id='orders'><a href=''>Orders</a></div>"+
+            "<div id='prof-info'><a href=''>Profile Info.</a></div><div id='downloads'>"+
+            "<a href=''>Downloads</a></div><div id='bill-info'><a href=''>Billing Info.</a></div></div></div</div>"
+    );
+    $(".navMenuContainer").click(function(){
+        $(".navMenuContainer").empty().remove();
+});
+}
+/*functiom createMyAccountMenu(){
+    $(".main").append("")
+}*/
 function getProductMenu(){
     var zero = 0;
     var pmArray = [];
@@ -65,7 +81,6 @@ function getProductMenu(){
             }//https://stackoverflow.com/questions/13782698/get-total-number-of-items-on-json-object
             localStorage.setItem("product_menu", JSON.stringify(pmArray));
                 console.log(localStorage);
-
         }
 })}};
 
