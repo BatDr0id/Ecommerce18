@@ -1,5 +1,5 @@
 var hurl = "https://ecommerce18.xyz";
-
+var auth = false;
 function getPostData(){
     $.ajax({
         type: "GET", dataType: "json", url: hurl + "/wp-json/wp/v2/posts?fields=pwapp_author,content,title",
@@ -53,19 +53,25 @@ function createMenu(){
     else {
         getProductMenu();
     }
-    $(".navMenuContainer").click(function(){
+   $(".navMenuContainer").click(function(e){
+        if(e.target.getAttribute("class") === "navMenuContainer")
         $(".navMenuContainer").empty().remove();
 });}
 
 function createAccountMenu() {
+    if(auth){
     $(".main").append("<div class='navMenuContainer'><div class='navProfile'>"+
             "<div class='myProfileImage'><img src='/res/dev/DSCN1671-copy1.png' alt=''></div>"+
             "<div class='myAccountName'>Testy Tester</div><div class='divider'></div>"+
             "<div class='accountMenu'><div id='orders'><a href=''>Orders</a></div>"+
             "<div id='prof-info'><a href=''>Profile Info.</a></div><div id='downloads'>"+
             "<a href=''>Downloads</a></div><div id='bill-info'><a href=''>Billing Info.</a></div></div></div</div>"
-    );
-    $(".navMenuContainer").click(function(){
+    );}
+    else {
+        $(".main").append("<div class='navMenuContainer'><div class='navProfile'><p>My Account</p><div class='divider'></div><input type='text' placeholder='Username' id='username'><input id='password' type='password' placeholder='Password'><button type='button'>Login</button><div class='divider'></div><a href=''><div>Sign Up</div></a><a href=''><div>Forgot Password?</div></a><a href=''><div>Go to our website</div></a></div></div>");
+    }
+    $(".navMenuContainer").click(function(e){
+        if(e.target.getAttribute("class") === "navMenuContainer")
         $(".navMenuContainer").empty().remove();
 });
 }

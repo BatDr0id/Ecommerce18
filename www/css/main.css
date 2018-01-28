@@ -143,6 +143,10 @@ table {
     color: white;
     overflow-y: auto;
 }
+.navProfile p {
+    text-align: center;
+    font-family: Ebrima;
+}
 .navMenu li{
     padding: .5em;
     text-decoration: none;
@@ -160,6 +164,10 @@ table {
 .divider {
     background-color: white;
     height: .1em;
+    right: 0;
+    left: 0;
+    float: none;
+    width: 100%;
     margin-top: 1em;
     margin-bottom: 1em;
 }
@@ -200,4 +208,35 @@ table {
     list-style-type: none;
     text-decoration: none;
     color: white;
+}
+.navProfile input {
+    width: 11.75em;
+    height: 2em;
+    background-color: black;
+    color: white;
+    border: none;
+    border-bottom: 2px solid white;
+    margin-bottom: .5em;
+    font-family: Ebrima;
+}
+.navProfile button{
+    margin-top: .75em;
+    background-color: black;
+    color: white;
+    font-family: Ebrima;
+    border: 2px solid white;
+    border-radius: 3px;
+    width: 11.75em;
+    height: 2.5em;
+}
+.navProfile a div {
+    width: 100%;
+    padding: .5em 0;
+}
+.navProfile a {
+    font-size: .8em;
+    margin-top: .75em;
+    text-decoration: none;
+    color: white;
+    font-family: Ebrima;
 }
