@@ -5,7 +5,6 @@ function getPostData(){
         type: "GET", dataType: "json", url: hurl + "/wp-json/wp/v2/posts?fields=pwapp_author,content,title",
         success: function (data){
             getPosts = data;
-            console.log(getPosts);
             //https://stackoverflow.com/questions/13782698/get-total-number-of-items-on-json-object
             for (i =0; i < Object.keys(getPosts).length; i++){
                 var id = getPosts[i].id;
@@ -93,7 +92,6 @@ function getProductMenu(){
                 pmArray.push(tmp);
             }//https://stackoverflow.com/questions/13782698/get-total-number-of-items-on-json-object
             localStorage.setItem("product_menu", JSON.stringify(pmArray));
-                console.log(localStorage);
         }
 })}};
 
