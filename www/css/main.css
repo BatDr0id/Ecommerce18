@@ -87,6 +87,12 @@ table {
     min-width: 10em;
     margin: 3.72em auto  0 auto;
 }
+.item-setter {
+    margin: auto;
+    max-width: 50em;
+    min-width: 10em;
+    margin: 3.72em auto  0 auto;
+}
 .posts-item {
     padding: 2.5em;
     height: auto;
@@ -96,9 +102,30 @@ table {
     font-family: Ebrima;
     margin-top: .25em;
 }
+.item-post {
+    padding: 2.5em;
+    height: auto;
+    max-width:50em;
+    min-width: 10em;
+    background-color: #eeeeee;
+    font-family: Ebrima;
+    margin-top: .25em;
+}
+
 #post-title {
     font-weight: 600;
     float: left;
+    text-decoration: none;
+    color: black;
+    font-family: Ebrima;
+}
+.item-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: black;
+    padding: 0;
+    
+    display: inline-block;
 }
 #post-creator {
     line-height: 1.5;
@@ -141,7 +168,6 @@ table {
     width: 10em;
     background: black;
     color: white;
-    overflow-y: auto;
 }
 .navProfile p {
     text-align: center;
@@ -239,4 +265,43 @@ table {
     text-decoration: none;
     color: white;
     font-family: Ebrima;
+}
+
+#item-image {
+    margin: auto auto;;
+    left: 0;
+    right: 0;
+    height: 6em;
+    display: block;}
+
+#item-link {
+   height: 100%;
+    width: 100%;
+    text-decoration: none;
+    text-decoration-style: none;
+    
+    color: black;
+}
+
+
+.item-title-setter {
+    margin: -6em 7em ;
+    float: left;
+    left: 0;
+    right: 0;
+    display: inline-block;}
+
+.item-image-setter {
+    display: flex;
+    height: 6em;
+    width: 6em;
+    overflow: hidden;
+
+}
+
+.item-content-descript {
+    font-size: .75em;
+    width: 20em;
+    margin: -6em 9.33em;
+    float: left;
 }
