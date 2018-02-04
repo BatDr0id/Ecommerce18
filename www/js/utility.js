@@ -31,15 +31,18 @@ function getCategoryItems(){
     })
 }
 
-/*function createProduct(id, img, name, price, description, linkToProduct )
+function createProduct(id, img, name, price, description, linkToProduct )
 {
-    $('.post-setter').append(
-        "<div class='posts-item' id='"+id+"'>"
-        +"<img src =" + img + ">"
-        +"<p id='post-title'> <a href=" + linkToProduct + ">" name + "</a></p>"
-        +"<p id='post-creator'>Price: "+ price +"</p>"
-        +"<div id='post-content'>"+ description +"</div></div>");
-}*/
+    $('.item-setter').append(
+	
+		"<a id='item-link' href='" + linkToProduct + "'>"
+        +"<div class='item-post'>"
+		+"<div class = 'item-image-setter'>"
+		+"<img id='item-image' src = '"+ img + "'></div>"
+		+"<div class='item-title-setter'><p>" + name + "</p></div>"
+		+"<p class='item-content-descript'>" + description + "</p></div></a>"
+		);
+}
 function createMenu(){
     $(".main").append(
     "<div class='navMenuContainer'>"+
