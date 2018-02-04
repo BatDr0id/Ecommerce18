@@ -21,6 +21,16 @@ function createPost(id, author, title, content){
         +"<p id='post-creator'>By: "+ author +"</p>"
         +"<div id='post-content'>"+ content +"</div></div>");
 }
+
+function getCategoryItems(){
+    $.ajax({
+        type :"GET", dataType: "json", per_page: "50" ,url:"https://ecommerce18.xyz/wp-json/wc/v2/products/?slug=books&per_page=100&consumer_key=ck_a88c9def695ef2c8accd8a04393f54d79b55890f&consumer_secret=cs_1aa3c7676c58e4a54ecf58db18fa7f6fd3d0ab3d",
+        success: function(data){
+            console.log(data);
+    }
+    })
+}
+
 /*function createProduct(id, img, name, price, description, linkToProduct )
 {
     $('.post-setter').append(

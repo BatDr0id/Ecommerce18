@@ -286,9 +286,8 @@ table {
 
 .item-title-setter {
     margin: -6em 7em ;
+    width: 100%;
     float: left;
-    left: 0;
-    right: 0;
     display: inline-block;}
 
 .item-image-setter {
@@ -301,7 +300,7 @@ table {
 
 .item-content-descript {
     font-size: .75em;
-    width: 20em;
+    max-width: 20em;
     margin: -6em 9.33em;
     float: left;
 }
