@@ -24,9 +24,20 @@ function createPost(id, author, title, content){
 
 function getCategoryItems(){
     $.ajax({
-        type :"GET", dataType: "json", per_page: "50" ,url:"https://ecommerce18.xyz/wp-json/wc/v2/products/?slug=books&per_page=100&consumer_key=ck_a88c9def695ef2c8accd8a04393f54d79b55890f&consumer_secret=cs_1aa3c7676c58e4a54ecf58db18fa7f6fd3d0ab3d",
+        type :"GET", dataType: "json" ,url:"https://ecommerce18.xyz/wp-json/wc/v2/products?post_stauts=published&per_page=50&consumer_key=ck_a88c9def695ef2c8accd8a04393f54d79b55890f&consumer_secret=cs_1aa3c7676c58e4a54ecf58db18fa7f6fd3d0ab3d",
         success: function(data){
             console.log(data);
+            for(i = 0; i < Object.keys(data).length;i++){
+                var name = data[i].name;
+                var slug = data[i].slug;
+                var link = data[i]._links.self[0].href;
+                var description = data[i].short_description;
+                var id = data[i].id;
+                var link = data[i].permalink;
+                var image = data[i].images[0].src;
+                var price = data[i].price;
+                createProduct(id, image, name, price, description, link);
+            }
     }
     })
 }
@@ -34,24 +45,24 @@ function getCategoryItems(){
 function createProduct(id, img, name, price, description, linkToProduct )
 {
     $('.item-setter').append(
-	
 		"<a id='item-link' href='" + linkToProduct + "'>"
         +"<div class='item-post'>"
 		+"<div class = 'item-image-setter'>"
 		+"<img id='item-image' src = '"+ img + "'></div>"
 		+"<div class='item-title-setter'><p>" + name + "</p></div>"
-		+"<p class='item-content-descript'>" + description + "</p></div></a>"
+		+"<div class='item-content-descript'>" + description + "</div></div></a>"
 		);
 }
+
 function createMenu(){
     $(".main").append(
     "<div class='navMenuContainer'>"+
     "<nav class='navMenu'>" +
-    "<ul><li><a href=''>Home</a></li>"+
+    "<ul><li><a href='index.html'>Home</a></li>"+
     "<li><a href=''>Shop</a></li>"+
     "<li><a href=''>My Account</a></li>"+
     "</ul><div class='divider'></div>"+
-    "<ul class='productMenu'></ul>"
+    "<ul class='productMenu'><li><a href='menu.html' slug='all'>All Products</li></ul>"
     );
     if (localStorage.getItem("product_menu") !== 'undefined'){
         pmArray = JSON.parse(localStorage.getItem("product_menu"));
