@@ -2,7 +2,7 @@
     require_once('../wp-config.php');
     $connection = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
-    $category = $_POST['category'];
+    $category = $_POST['slug'];
     //var $page_number = $_POST['page_number'];
     $response = array();
 
@@ -35,7 +35,8 @@
 
         while(mysqli_stmt_fetch($statement)){  
             $package = array();
-            $package["author"] = $author;
+            $package[id] = $id;
+            $package[author] = $author;
             $package["date"] = $publish_date;
             $package["content"] = $content;
             $package["title"] = $title;
@@ -48,5 +49,5 @@
             $package["slug"] = $slug;
             array_push($response, $package);
         }
-    echo json_encode($response); 
+    echo json_encode($response, JSON_PRETTY_PRINT); 
 ?>

@@ -1,5 +1,7 @@
 var hurl = "https://ecommerce18.xyz";
 var auth = false;
+var ck = "ck_a88c9def695ef2c8accd8a04393f54d79b55890f";
+var cs = "cs_1aa3c7676c58e4a54ecf58db18fa7f6fd3d0ab3d"
 function getPostData(){
     $.ajax({
         type: "GET", dataType: "json", url: hurl + "/wp-json/wp/v2/posts?fields=pwapp_author,content,title",
@@ -23,8 +25,11 @@ function createPost(id, author, title, content){
 }
 
 function getCategoryItems(){
-    $.ajax({
-        type :"GET", dataType: "json" ,url:"https://ecommerce18.xyz/wp-json/wc/v2/products?post_stauts=published&per_page=50&consumer_key=ck_a88c9def695ef2c8accd8a04393f54d79b55890f&consumer_secret=cs_1aa3c7676c58e4a54ecf58db18fa7f6fd3d0ab3d",
+    var urlReq;
+   if(sessionStorage.getItem("slug") == null){
+        urlReq = hurl + "/wp-json/wc/v2/products?per_page=50&consumer_key="+ck+"&consumer_secret="+cs;
+        $.ajax({
+        type :"GET", dataType: "json" ,url:urlReq,
         success: function(data){
             console.log(data);
             for(i = 0; i < Object.keys(data).length;i++){
@@ -39,7 +44,33 @@ function getCategoryItems(){
                 createProduct(id, image, name, price, description, link);
             }
     }
-    })
+    });
+   }
+    else {
+        urlReq = hurl + "/custom/get-products-by-cat.php";
+        $.ajax({
+            type:"POST",
+            url: urlReq,
+            data: {slug: sessionStorage.getItem("slug")},
+            dataType: "json",
+            success: function(data){
+                console.log(data);
+            for(i = 0; i < Object.keys(data).length;i++){
+                var name = data[i].title;
+                var slug = data[i].slug;
+                var description = data[i].description;
+                var id = data[i].id;
+                var link = data[i].guid;
+                var image = data[i].image;
+                var price = data[i].price;
+                createProduct(id, image, name, price, description, link);
+            }
+            }
+            
+        });
+    }
+    
+    
 }
 
 function createProduct(id, img, name, price, description, linkToProduct )
@@ -55,6 +86,7 @@ function createProduct(id, img, name, price, description, linkToProduct )
 }
 
 function createMenu(){
+
     $(".main").append(
     "<div class='navMenuContainer'>"+
     "<nav class='navMenu'>" +
@@ -62,7 +94,7 @@ function createMenu(){
     "<li><a href=''>Shop</a></li>"+
     "<li><a href=''>My Account</a></li>"+
     "</ul><div class='divider'></div>"+
-    "<ul class='productMenu'><li><a href='menu.html' slug='all'>All Products</li></ul>"
+    "<ul class='productMenu'><li><a href='products.html'>All Products</a></li></ul>"
     );
     if (localStorage.getItem("product_menu") !== 'undefined'){
         pmArray = JSON.parse(localStorage.getItem("product_menu"));
@@ -70,16 +102,27 @@ function createMenu(){
             var name = pmArray[i][0];
             var slug = pmArray[i][1];
             var link = pmArray[i][2];
+            console.log(name);
             createProductMenu(name, slug);
         }
     }
     else {
-        getProductMenu();
+        getMenuItems();
     }
    $(".navMenuContainer").click(function(e){
         if(e.target.getAttribute("class") === "navMenuContainer")
         $(".navMenuContainer").empty().remove();
-});}
+});
+$('.menu-product-link').click(
+        function(e){
+            var product =  e.target;
+            console.log(product);
+            var slug = product.getAttribute('slug');
+            var name = product.getAttribute('category');
+            sessionStorage.setItem("slug", slug);
+            sessionStorage.setItem("category", name);
+    });
+}
 
 function createAccountMenu() {
     if(auth){
@@ -99,13 +142,13 @@ function createAccountMenu() {
 });
 }
 
-function getProductMenu(){
+function getMenuItems(){    
     var zero = 0;
     var pmArray = [];
      if (localStorage.getItem("product_menu") == null){
     $.ajax({
         type: "GET", dataType: "json",
-        url: "https://ecommerce18.xyz/wp-json/wc/v2/products/categories?consumer_key=ck_a88c9def695ef2c8accd8a04393f54d79b55890f&consumer_secret=cs_1aa3c7676c58e4a54ecf58db18fa7f6fd3d0ab3d",
+        url: hurl + "/wp-json/wc/v2/products/categories?consumer_key="+ck+"&consumer_secret="+cs,
         success: function (data){
             menu = data;
             for(i = 0; i < Object.keys(menu).length;i++){
@@ -121,5 +164,5 @@ function getProductMenu(){
 
 function createProductMenu(name, slug){
     $('.productMenu').append(
-        "<li><a href='' slug='"+ slug +"'>"+ name +"</a></li>");
+        "<li><a class='menu-product-link' href='products.html' slug='"+ slug +"' category='"+ name +"'>"+ name +"</a></li>");
 }
