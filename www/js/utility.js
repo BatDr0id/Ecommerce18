@@ -54,11 +54,12 @@ function getCategoryItems(){
             data: {slug: sessionStorage.getItem("slug")},
             dataType: "json",
             success: function(data){
+                sessionStorage.removeItem("slug");
                 console.log(data);
             for(i = 0; i < Object.keys(data).length;i++){
                 var name = data[i].title;
                 var slug = data[i].slug;
-                var description = data[i].description;
+                var description = "<p>"+ data[i].description + "</p>";
                 var id = data[i].id;
                 var link = data[i].guid;
                 var image = data[i].image;
