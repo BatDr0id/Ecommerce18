@@ -77,13 +77,13 @@ function getCategoryItems(){
 function createProduct(id, img, name, price, description, linkToProduct )
 {
     $('.item-setter').append(
-		"<a id='item-link' href='" + linkToProduct + "'>"
+        "<a id='item-link' href='" + linkToProduct + "'>"
         +"<div class='item-post'>"
-		+"<div class = 'item-image-setter'>"
-		+"<img id='item-image' src = '"+ img + "'></div>"
-		+"<div class='item-title-setter'><p>" + name + "</p></div>"
-		+"<div class='item-content-descript'>" + description + "</div></div></a>"
-		);
+        +"<div class = 'item-image-setter'>"
+        +"<img id='item-image' src = '"+ img + "'></div>"
+        +"<div class='item-title-setter'><p>" + name + "</p></div>"
+        +"<div class='item-content-descript'>" + description + "</div></div></a>"
+        );
 }
 
 function createMenu(){
@@ -127,23 +127,53 @@ $('.menu-product-link').click(
 
 function createAccountMenu() {
     if(auth){
-    $(".main").append("<div class='navMenuContainer'><div class='navProfile'>"+
-            "<div class='myProfileImage'><img src='/res/dev/DSCN1671-copy1.png' alt=''></div>"+
-            "<div class='myAccountName'>Testy Tester</div><div class='divider'></div>"+
-            "<div class='accountMenu'><div id='orders'><a href=''>Orders</a></div>"+
-            "<div id='prof-info'><a href=''>Profile Info.</a></div><div id='downloads'>"+
-            "<a href=''>Downloads</a></div><div id='bill-info'><a href=''>Billing Info.</a></div></div></div</div>"
-    );}
+        loginSuccess();
+    }
     else {
-        $(".main").append("<div class='navMenuContainer'><div class='navProfile'><p>My Account</p><div class='divider'></div><input type='text' placeholder='Username' id='username'><input id='password' type='password' placeholder='Password'><button type='button'>Login</button><div class='divider'></div><a href=''><div>Sign Up</div></a><a href=''><div>Forgot Password?</div></a><a href=''><div>Go to our website</div></a></div></div>");
+        $(".main").append("<div class='navMenuContainer'><div class='navProfile'><p>My Account</p><div class='divider'></div><input type='text' placeholder='Username' id='username'><input id='password' type='password' placeholder='Password'><button class='login-button' type='button'>Login</button><div class='divider'></div><a href=''><div>Sign Up</div></a><a href=''><div>Forgot Password?</div></a><a href=''><div>Go to our website</div></a></div></div>");
     }
     $(".navMenuContainer").click(function(e){
         if(e.target.getAttribute("class") === "navMenuContainer")
         $(".navMenuContainer").empty().remove();
 });
+    $(".login-button").click(function(e){
+        var username = $("#username").val();
+        var password = $('#password').val();
+        $.ajax({
+            type: "POST",
+            dataType: "jsonp",
+            url: "https://www.ecommerce18.xyz/api/auth/generate_auth_cookie/?username="+username+"&password="+password,
+            success: function(data){
+                console.log(data);
+                auth = true;
+                createAccountMenu();
+                var id = data.id;
+                var name = data.user.username;
+                var first = data.user.firstname;
+                var last = data.user.lastname;
+                var image = data.user.avatar;
+                var email = data.user.email;
+                var capabilities = data.user.capabilities;
+                loginSuccess(id, name, first, last, image, email);
+                sessionStorage.setItem,("id", id);
+                sessionStorage.setItem()
+            }
+        });
+            
+    });
 }
 
-function getMenuItems(){    
+function loginSuccess(id, name, first, last, image, email){
+    $(".main").append("<div class='navMenuContainer'><div class='navProfile' id='"+name+"' account-number='"+id+"'>"+
+            "<p class='myProfileName' >"+first+ " "+last+"</p>"+
+            "<div class='myProfileImage'><img src='"+image+"' alt=''></div>"+
+            "<div class='myAccountName'>"+name+"</div><div class='divider'></div>"+
+            "<div class='accountMenu'><div id='orders'><a href=''>Orders</a></div>"+
+            "<div id='prof-info'><a href=''>Profile Info.</a></div><div id='downloads'>"+
+            "<a href=''>Downloads</a></div><div id='bill-info'><a href=''>Billing Info.</a></div></div></div></div>"
+    );
+}
+function getMenuItems(){
     var zero = 0;
     var pmArray = [];
      if (localStorage.getItem("product_menu") == null){

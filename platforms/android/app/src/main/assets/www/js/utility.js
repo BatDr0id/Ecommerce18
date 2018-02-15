@@ -1,5 +1,5 @@
 var hurl = "https://ecommerce18.xyz";
-var auth = false;
+var auth = true;
 var ck = "ck_a88c9def695ef2c8accd8a04393f54d79b55890f";
 var cs = "cs_1aa3c7676c58e4a54ecf58db18fa7f6fd3d0ab3d"
 function getPostData(){
@@ -54,11 +54,12 @@ function getCategoryItems(){
             data: {slug: sessionStorage.getItem("slug")},
             dataType: "json",
             success: function(data){
+                sessionStorage.removeItem("slug");
                 console.log(data);
             for(i = 0; i < Object.keys(data).length;i++){
                 var name = data[i].title;
                 var slug = data[i].slug;
-                var description = data[i].description;
+                var description = "<p>"+ data[i].description + "</p>";
                 var id = data[i].id;
                 var link = data[i].guid;
                 var image = data[i].image;
@@ -127,7 +128,7 @@ $('.menu-product-link').click(
 function createAccountMenu() {
     if(auth){
     $(".main").append("<div class='navMenuContainer'><div class='navProfile'>"+
-            "<div class='myProfileImage'><img src='/res/dev/DSCN1671-copy1.png' alt=''></div>"+
+            "<div class='myProfileImage'><img src='res/dev/DSCN1671-copy1.png' alt=''></div>"+
             "<div class='myAccountName'>Testy Tester</div><div class='divider'></div>"+
             "<div class='accountMenu'><div id='orders'><a href=''>Orders</a></div>"+
             "<div id='prof-info'><a href=''>Profile Info.</a></div><div id='downloads'>"+
