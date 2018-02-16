@@ -126,8 +126,15 @@ $('.menu-product-link').click(
 }
 
 function createAccountMenu() {
-    if(auth){
-        loginSuccess();
+    var id, name, first, last, image, email, capabilitiesm, cookie;
+    if(sessionStorage.getItem('cookie')){
+        id = sessionStorage.getItem('id');
+        name = sessionStorage.getItem('name');
+        first = sessionStorage.getItem('first');
+        last = sessionStorage.getItem('last');
+        image = sessionStorage.getItem('image');
+        email = sessionStorage.getItem('eamil');
+        loginSuccess(id, name, first, last, image, email);
     }
     else {
         $(".main").append("<div class='navMenuContainer'><div class='navProfile'><p>My Account</p><div class='divider'></div><input type='text' placeholder='Username' id='username'><input id='password' type='password' placeholder='Password'><button class='login-button' type='button'>Login</button><div class='divider'></div><a href=''><div>Sign Up</div></a><a href=''><div>Forgot Password?</div></a><a href=''><div>Go to our website</div></a></div></div>");
@@ -135,7 +142,7 @@ function createAccountMenu() {
     $(".navMenuContainer").click(function(e){
         if(e.target.getAttribute("class") === "navMenuContainer")
         $(".navMenuContainer").empty().remove();
-});
+    });
     $(".login-button").click(function(e){
         var username = $("#username").val();
         var password = $('#password').val();
@@ -147,16 +154,24 @@ function createAccountMenu() {
                 console.log(data);
                 auth = true;
                 createAccountMenu();
-                var id = data.id;
-                var name = data.user.username;
-                var first = data.user.firstname;
-                var last = data.user.lastname;
-                var image = data.user.avatar;
-                var email = data.user.email;
-                var capabilities = data.user.capabilities;
+                id = data.user.id;
+                name = data.user.username;
+                first = data.user.firstname;
+                last = data.user.lastname;
+                image = data.user.avatar;
+                email = data.user.email;
+                cookie = data.cookie;
+                capabilities = data.user.capabilities;
+                $(".navMenuContainer").empty().remove();
                 loginSuccess(id, name, first, last, image, email);
-                sessionStorage.setItem,("id", id);
-                sessionStorage.setItem()
+                sessionStorage.setItem("id", id);
+                sessionStorage.setItem('name', name);
+                sessionStorage.setItem('first', first);
+                sessionStorage.setItem('last', last);
+                sessionStorage.setItem('image', image);
+                sessionStorage.setItem('email', email);
+                sessionStorage.setItem('capabilities', capabilities);
+                sessionStorage.setItem('cookie', cookie);
             }
         });
             
@@ -170,8 +185,13 @@ function loginSuccess(id, name, first, last, image, email){
             "<div class='myAccountName'>"+name+"</div><div class='divider'></div>"+
             "<div class='accountMenu'><div id='orders'><a href=''>Orders</a></div>"+
             "<div id='prof-info'><a href=''>Profile Info.</a></div><div id='downloads'>"+
-            "<a href=''>Downloads</a></div><div id='bill-info'><a href=''>Billing Info.</a></div></div></div></div>"
+            "<a href=''>Downloads</a></div><div id='bill-info'><a href=''>Billing Info.</a></div>"+
+            "<div><a href=''>Logout</a></div></div></div></div>"
     );
+     $(".navMenuContainer").click(function(e){
+        if(e.target.getAttribute("class") === "navMenuContainer")
+        $(".navMenuContainer").empty().remove();
+    });
 }
 function getMenuItems(){
     var zero = 0;
