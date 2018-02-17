@@ -501,6 +501,14 @@ module.exports = [
       "navigator.notification",
       "navigator"
     ]
+  },
+  {
+    "id": "cordova-plugin-android-fingerprint-auth.FingerprintAuth",
+    "file": "plugins/cordova-plugin-android-fingerprint-auth/www/FingerprintAuth.js",
+    "pluginId": "cordova-plugin-android-fingerprint-auth",
+    "clobbers": [
+      "FingerprintAuth"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -524,7 +532,8 @@ module.exports.metadata =
   "cordova-plugin-network-information": "1.2.1",
   "cordova-plugin-splashscreen": "3.2.2",
   "cordova-plugin-statusbar": "2.1.3",
-  "cordova-plugin-vibration": "2.1.6"
+  "cordova-plugin-vibration": "2.1.6",
+  "cordova-plugin-android-fingerprint-auth": "1.4.3"
 };
 // BOTTOM OF METADATA
 });

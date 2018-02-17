@@ -60,6 +60,9 @@
     },
     "cordova-plugin-vibration": {
       "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
+    },
+    "cordova-plugin-android-fingerprint-auth": {
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
     }
   },
   "dependent_plugins": {
