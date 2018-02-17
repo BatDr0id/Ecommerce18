@@ -43,6 +43,9 @@
     width: 5em;
     text-align: center;
 }
+.product-tabs ul li:active {
+    background-color: black;
+}
 .product-tab-content {
     margin: .25em auto .25em auto;
     max-width: 50em;
