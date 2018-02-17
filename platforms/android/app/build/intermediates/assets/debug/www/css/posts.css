@@ -1,0 +1,32 @@
+.post-setter {
+    margin: auto;
+    max-width: 50em;
+    min-width: 10em;
+    margin: 3.72em auto  0 auto;
+}
+.posts-item {
+    padding: 2.5em;
+    height: auto;
+    max-width:50em;
+    min-width: 10em;
+    background-color: #eeeeee;
+    font-family: Ebrima;
+    margin-top: .25em;
+}
+#post-title {
+    font-weight: 600;
+    float: left;
+    text-decoration: none;
+    color: black;
+    font-family: Ebrima;
+}
+#post-creator {
+    line-height: 1.5;
+    font-size: .75em;
+    float: left;
+    margin: 0em .5em;
+}
+#post-content {
+    font-size: .75em;
+    margin: 2.25em 0 0 0;
+}

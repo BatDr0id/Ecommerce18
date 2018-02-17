@@ -138,6 +138,8 @@ function createAccountMenu() {
     }
     else {
         $(".main").append("<div class='navMenuContainer'><div class='navProfile'><p>My Account</p><div class='divider'></div><input type='text' placeholder='Username' id='username'><input id='password' type='password' placeholder='Password'><button class='login-button' type='button'>Login</button><div class='divider'></div><a href=''><div>Sign Up</div></a><a href=''><div>Forgot Password?</div></a><a href=''><div>Go to our website</div></a></div></div>");
+        
+        
     }
     $(".navMenuContainer").click(function(e){
         if(e.target.getAttribute("class") === "navMenuContainer")
