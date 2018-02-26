@@ -46,8 +46,8 @@
 .product-tab-content {
     margin: .25em auto .25em auto;
     max-width: 50em;
-    height: 2em;
-    padding: 1em   2.5em;
+    min-height: 2em;
+    padding: 1em  2.5em;
     background-color: #eee;
 }
 #productImage {
@@ -57,8 +57,9 @@
     margin: auto;
 }
 
-.product-description p {
+.product-description {
     min-height: 3em;
+    max-height: auto;
     word-wrap: break-word;
     word-break: break-all;
 }

@@ -64,7 +64,7 @@ function loginSuccess(id, name, first, last, image, email){
                    "<div id='prof-info'><a href=''>Profile Info.</a></div>"+
                    "<div id='downloads'><a href=''>Downloads</a></div>"+
                    "<div id='bill-info'><a href=''>Billing Info.</a></div>"+
-                   "<div><a href=''>Logout</a></div>"+
+                   "<div class='logout'>Logout</div>"+
                 "</div>"+
                 "<div class='divider'></div>"+
                 "<p id='checkText'>Remeber Me</p><input type='checkbox' id='checkbox'/>"+
@@ -75,16 +75,28 @@ function loginSuccess(id, name, first, last, image, email){
         if(e.target.getAttribute("class") === "navMenuContainer")
         $(".navMenuContainer").empty().remove();
     });
+    $('.logout').click(function(e){
+        sessionStorage.removeItem('cookie');
+        sessionStorage.removeItem('email');
+        sessionStorage.removeItem('first');
+        sessionStorage.removeItem('id');
+        sessionStorage.removeItem('email');
+        sessionStorage.removeItem('image');
+        sessionStorage.removeItem('item-selected');
+        sessionStorage.removeItem('last');
+        sessionStorage.removeItem('name');
+    })
 }
-/*
+
 function fingerauth(){
             // Check if device supports fingerprint
-    
+    /*
     * @return {
     *      isAvailable:boolean,
     *      isHardwareDetected:boolean,
     *      hasEnrolledFingerprints:boolean
     *   }
+    */
     
     FingerprintAuth.isAvailable(function (result) {
 
@@ -124,15 +136,15 @@ function fingerauth(){
             });
         }
     
-    * @return {
+    /* @return {
     *      isAvailable:boolean,
     *      isHardwareDetected:boolean,
     *      hasEnrolledFingerprints:boolean
-    *   }
+    *   }*/
     
         }, function (message) {
             console.log("isAvailableError(): " + message);
         });
 
 }
-*/
+
