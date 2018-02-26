@@ -3,15 +3,25 @@
     max-width: 50em;
     min-width: 10em;
     margin: 3.75em auto  0 auto;
+    z-index: 0;
+}
+#item-link {
+   height: 100%;
+    width: 100%;
+    text-decoration: none;
+    text-decoration-style: none;
+    color: black;
 }
 .item-post {
-    padding: 2.5em;
+    padding: 1.5em;
     height: auto;
     max-width:50em;
     min-width: 3em;
     background-color: #eeeeee;
     font-family: Ebrima;
     margin-top: .25em;
+    z-index: 0;
+    position: relative;
 }
 .item-title {
     font-size: 1.2em;
@@ -26,20 +36,18 @@
     right: 0;
     height: 6em;
     display: block;}
-#item-link {
-   height: 100%;
-    width: 100%;
-    text-decoration: none;
-    text-decoration-style: none;
-    color: black;
-}
 .item-title-setter {
     font-weight: 1000;
     margin: -6em 7em ;
     max-width: 30em;
+    word-wrap: break-word;
+    word-break: break-all;
     min-width: 3em;
+    overflow: hidden;
+    height: 1.1em;
     float: left;
-    display: inline-block;}
+    display: inline-block;
+}
 .item-image-setter {
     display: flex;
     height: 6em;
