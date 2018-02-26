@@ -11,6 +11,7 @@
     <script src="js/jQuery.js" type="text/javascript"></script>
     <script src="js/utility.js" type="text/javascript"></script>
     <script src="js/accountmenu.js" type="text/javascript"></script>
+    <script src='js/item.js' type='text/javascript'></script>
     <title>Ecommerce18</title>
     <script>
         //Displays posts on home page
@@ -25,6 +26,8 @@
 <div class="main" home="true">
    <script>
     $(window).on('load',function(){
+                    setItem();
+
                 getMenuItems();
             });
     </script>
@@ -36,28 +39,19 @@
     </div>
     <div class="product-setter">
         <div class="product-title">Hello World </div>
-        <div class="product-image"><img src="img/Frameworks/011f7f24ae4cbbef191cff1a711df9e1_729e92116ce550fff4d2164d0de359ed_0_.jpg" alt=""></div>
+        <div class="product-image"><img id='productImage' src="img/Frameworks/011f7f24ae4cbbef191cff1a711df9e1_729e92116ce550fff4d2164d0de359ed_0_.jpg" alt=""></div>
         <div class="product-tabs">
             <ul>
-                <li class="tab" attr="description" style="background-color: black; color: white;">Description</li>
-                <li class="tab" attr="reviews">Reviews</li>
+                <li class="tab description" attr="description" style="background-color: black; color: white;">Description</li>
+                <li class="tab review" attr="review">Reviews</li>
                 <script>
-                    $('.tab').click(function(e){
-                        var tab = e.target;
-                        if($('.tab') != tab){
-                            $('.tab').css('background-color', '#eee');
-                        $('.tab').css('color', 'black' );
-                        }
-                        var attr = e.target.getAttribute("attr");
-                        $(tab).css('background-color', 'black');
-                        $(tab).css('color', 'white' );
-                    });
+                    
                     
                 </script>
             </ul>
         </div>
         <div class='product-tab-content'>
-            <p class="product-description">Hello This is a product description</p>
+            <div class="product-description"></div>
         </div>
     </div>
 

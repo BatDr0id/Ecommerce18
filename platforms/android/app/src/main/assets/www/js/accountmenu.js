@@ -21,7 +21,7 @@ function createAccountMenu() {
     $(".login-button").click(function(e){
         var username = $("#username").val();
         var password = $('#password').val();
-        fingerauth();
+       /* fingerauth();*/
         $.ajax({
             type: "POST",
             dataType: "jsonp",
@@ -50,7 +50,6 @@ function createAccountMenu() {
                 sessionStorage.setItem('cookie', cookie);
             }
         });
-            
     });
 }
 function loginSuccess(id, name, first, last, image, email){
@@ -68,7 +67,7 @@ function loginSuccess(id, name, first, last, image, email){
                    "<div><a href=''>Logout</a></div>"+
                 "</div>"+
                 "<div class='divider'></div>"+
-                "<input type='checkbox' class='checkbox' placeholder='Remeber Me'>"+
+                "<p id='checkText'>Remeber Me</p><input type='checkbox' id='checkbox'/>"+
             "</div>"+
         "</div>"
     );
@@ -77,15 +76,16 @@ function loginSuccess(id, name, first, last, image, email){
         $(".navMenuContainer").empty().remove();
     });
 }
+/*
 function fingerauth(){
             // Check if device supports fingerprint
-    /**
+    
     * @return {
     *      isAvailable:boolean,
     *      isHardwareDetected:boolean,
     *      hasEnrolledFingerprints:boolean
     *   }
-    */
+    
     FingerprintAuth.isAvailable(function (result) {
 
         console.log("FingerprintAuth available: " + JSON.stringify(result));
@@ -123,16 +123,16 @@ function fingerauth(){
                 }
             });
         }
-
-    /**
+    
     * @return {
     *      isAvailable:boolean,
     *      isHardwareDetected:boolean,
     *      hasEnrolledFingerprints:boolean
     *   }
-    */
+    
         }, function (message) {
             console.log("isAvailableError(): " + message);
         });
 
 }
+*/

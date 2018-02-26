@@ -43,11 +43,24 @@
     width: 5em;
     text-align: center;
 }
-
 .product-tab-content {
     margin: .25em auto .25em auto;
     max-width: 50em;
     height: 2em;
-    padding: 1em 0 0  2.5em;
+    padding: 1em   2.5em;
     background-color: #eee;
 }
+#productImage {
+    left: 0;
+    right:0;
+    display: block;
+    margin: auto;
+}
+
+.product-description p {
+    min-height: 3em;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+

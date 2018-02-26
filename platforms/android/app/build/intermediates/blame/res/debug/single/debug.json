@@ -32,12 +32,12 @@
         "source": "C:\\Users\\SempiternalSearch\\Documents\\GitHub\\Ecommerce18\\platforms\\android\\app\\src\\main\\res\\layout\\fingerprint_dialog_content.xml"
     },
     {
-        "merged": "D:\\SempiternalSearch\\Ecommerce18\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_icon.png.flat",
-        "source": "D:\\SempiternalSearch\\Ecommerce18\\platforms\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\icon.png"
-    },
-    {
         "merged": "C:\\Users\\SempiternalSearch\\Documents\\GitHub\\Ecommerce18\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_fingerprint_dialog_container.xml.flat",
         "source": "C:\\Users\\SempiternalSearch\\Documents\\GitHub\\Ecommerce18\\platforms\\android\\app\\src\\main\\res\\layout\\fingerprint_dialog_container.xml"
+    },
+    {
+        "merged": "D:\\SempiternalSearch\\Ecommerce18\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_icon.png.flat",
+        "source": "D:\\SempiternalSearch\\Ecommerce18\\platforms\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\icon.png"
     },
     {
         "merged": "C:\\Users\\SempiternalSearch\\Documents\\GitHub\\Ecommerce18\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_previous_item.png.flat",
