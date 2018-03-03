@@ -1,4 +1,19 @@
-#Sun Feb 25 21:12:22 EST 2018
-base.0=C\:\\Users\\SempiternalSearch\\Documents\\GitHub\\Ecommerce18\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+#Thu Mar 01 15:29:35 EST 2018
+renamed.5=classes6.dex
+renamed.4=classes5.dex
+renamed.3=classes4.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
 renamed.0=classes.dex
-file.0=C\:\\Users\\SempiternalSearch\\Documents\\GitHub\\Ecommerce18\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0\\classes.dex
+base.5=D\:\\SempiternalSearch\\Documents\\GitHub\\Ecommerce18\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\80
+base.4=D\:\\SempiternalSearch\\Documents\\GitHub\\Ecommerce18\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\77
+base.3=D\:\\SempiternalSearch\\Documents\\GitHub\\Ecommerce18\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\75
+base.2=D\:\\SempiternalSearch\\Documents\\GitHub\\Ecommerce18\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\78
+base.1=D\:\\SempiternalSearch\\Documents\\GitHub\\Ecommerce18\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\76
+base.0=D\:\\SempiternalSearch\\Documents\\GitHub\\Ecommerce18\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\79
+file.5=D\:\\SempiternalSearch\\Documents\\GitHub\\Ecommerce18\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\80\\classes.dex
+file.4=D\:\\SempiternalSearch\\Documents\\GitHub\\Ecommerce18\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\77\\classes.dex
+file.3=D\:\\SempiternalSearch\\Documents\\GitHub\\Ecommerce18\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\75\\classes.dex
+file.2=D\:\\SempiternalSearch\\Documents\\GitHub\\Ecommerce18\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\78\\classes.dex
+file.1=D\:\\SempiternalSearch\\Documents\\GitHub\\Ecommerce18\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\76\\classes.dex
+file.0=D\:\\SempiternalSearch\\Documents\\GitHub\\Ecommerce18\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\79\\classes.dex

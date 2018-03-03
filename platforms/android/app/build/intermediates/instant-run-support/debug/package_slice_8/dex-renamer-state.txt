@@ -1,0 +1,4 @@
+#Thu Mar 01 15:29:19 EST 2018
+base.0=D\:\\SempiternalSearch\\Documents\\GitHub\\Ecommerce18\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\72
+renamed.0=classes.dex
+file.0=D\:\\SempiternalSearch\\Documents\\GitHub\\Ecommerce18\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\72\\classes.dex

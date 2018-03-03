@@ -1,5 +1,11 @@
 
 function createAccountMenu() {
+    var remember = false;
+    if (localStorage.getItem('remember')){
+        username = localStorage.getItem('remember');
+        password = localStorage.getItem('rememberp');
+        remember = true;
+    }
     var id, name, first, last, image, email, capabilitiesm, cookie;
     if(sessionStorage.getItem('cookie')){
         id = sessionStorage.getItem('id');
@@ -11,8 +17,14 @@ function createAccountMenu() {
         loginSuccess(id, name, first, last, image, email);
     }
     else {
-        $(".main").append("<div class='navMenuContainer'><div class='navProfile'><p>My Account</p><div class='divider'></div><input type='text' placeholder='Username' id='username'><input id='password' type='password' placeholder='Password'><button class='login-button' type='button'>Login</button><div class='divider'></div><a href=''><div>Sign Up</div></a><a href=''><div>Forgot Password?</div></a><a href=''><div>Go to our website</div></a></div></div>");
+        $(".main").append("<div class='navMenuContainer'><div class='navProfile'><p>My Account</p><div class='divider'></div><input type='text' placeholder='Username' id='username'><input id='password' type='password' placeholder='Password'><button class='login-button' type='button'>Login</button><div class='divider'></div><a href=''><div>Sign Up</div></a><a href=''><div>Forgot Password?</div></a><a href=''><div>Go to our website</div></a><div class='divider'></div>"+
+                "<p id='checkText'>Remember Me</p><input type='checkbox' id='checkbox'/>"+"</div></div>");
         
+    }
+    if (remember){
+        $('#username').val(username);
+        $('#password').val(password);
+        $('#checkbox').prop('checked',true);
     }
     $(".navMenuContainer").click(function(e){
         if(e.target.getAttribute("class") === "navMenuContainer")
@@ -21,7 +33,8 @@ function createAccountMenu() {
     $(".login-button").click(function(e){
         var username = $("#username").val();
         var password = $('#password').val();
-       /* fingerauth();*/
+       // fingerauth(username, password);
+        
         $.ajax({
             type: "POST",
             dataType: "jsonp",
@@ -48,10 +61,15 @@ function createAccountMenu() {
                 sessionStorage.setItem('email', email);
                 sessionStorage.setItem('capabilities', capabilities);
                 sessionStorage.setItem('cookie', cookie);
+                if ($('#checkbox').attr('checked', true)){
+                    localStorage.setItem('remember', username);
+                    localStorage.setItem('rememberp', password);
+                }
             }
         });
     });
 }
+
 function loginSuccess(id, name, first, last, image, email){
     $(".main").append("<div class='navMenuContainer'>"+
             "<div class='navProfile' id='"+name+"' account-number='"+id+"'>"+
@@ -64,10 +82,10 @@ function loginSuccess(id, name, first, last, image, email){
                    "<div id='prof-info'><a href=''>Profile Info.</a></div>"+
                    "<div id='downloads'><a href=''>Downloads</a></div>"+
                    "<div id='bill-info'><a href=''>Billing Info.</a></div>"+
-                   "<div class='logout'>Logout</div>"+
+                   "<div class='logout'><a href='#'>Logout</a></div>"+
                 "</div>"+
                 "<div class='divider'></div>"+
-                "<p id='checkText'>Remeber Me</p><input type='checkbox' id='checkbox'/>"+
+                "<p id='checkText'>Remember Me</p><input type='checkbox' id='checkbox'/>"+
             "</div>"+
         "</div>"
     );
@@ -85,10 +103,11 @@ function loginSuccess(id, name, first, last, image, email){
         sessionStorage.removeItem('item-selected');
         sessionStorage.removeItem('last');
         sessionStorage.removeItem('name');
-    })
+    });
+   
 }
 
-function fingerauth(){
+function fingerauth(user,pass){
             // Check if device supports fingerprint
     /*
     * @return {
@@ -107,22 +126,25 @@ function fingerauth(){
 
             // Check the docs to know more about the encryptConfig object :)
             var encryptConfig = {
-                clientId: "myAppName",
-                username: "currentUser",
-                password: "currentUserPassword",
+                clientId: "Ecommerce18",
+                username: user,
+                password: pass ,
                 maxAttempts: 5,
                 locale: "en_US",
                 dialogTitle: "Hey dude, your finger",
                 dialogMessage: "Put your finger on the device",
                 dialogHint: "No one will steal your identity, promised"
             }; // See config object for required parameters
-
+            console.log (username + password);
             // Set config and success callback
             FingerprintAuth.encrypt(encryptConfig, function(_fingerResult){
                 console.log("successCallback(): " + JSON.stringify(_fingerResult));
+                console.log("Stringify " + _fingerResult);
                 if (_fingerResult.withFingerprint) {
                     console.log("Successfully encrypted credentials.");
                     console.log("Encrypted credentials: " + result.token);
+                    localStorage.setItem('token', result.token);
+                    console.log("Encrypted stuff stored");
                 } else if (_fingerResult.withBackup) {
                     console.log("Authenticated with backup password");
                 }
@@ -148,3 +170,9 @@ function fingerauth(){
 
 }
 
+$('#checked').click(function(e){
+    if(!this.checked){
+        localStorage.removeItem('remember');
+        localStorage.removeItem('rememberp');
+    }
+})
