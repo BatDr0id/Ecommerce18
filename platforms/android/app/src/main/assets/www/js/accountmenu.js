@@ -1,11 +1,15 @@
 
 function createAccountMenu() {
+    
     var remember = false;
+
+
     if (localStorage.getItem('remember')){
         username = localStorage.getItem('remember');
         password = localStorage.getItem('rememberp');
         remember = true;
     }
+   
     var id, name, first, last, image, email, capabilitiesm, cookie;
     if(sessionStorage.getItem('cookie')){
         id = sessionStorage.getItem('id');
@@ -30,10 +34,24 @@ function createAccountMenu() {
         if(e.target.getAttribute("class") === "navMenuContainer")
         $(".navMenuContainer").empty().remove();
     });
+ $('#checkbox').click(function(e){
+
+    if(!this.checked){
+        if(localStorage.getItem('remember') || localStorage.getItem('rememberp')){
+        localStorage.removeItem('remember');
+        localStorage.removeItem('rememberp');}
+    }
+});
+    
     $(".login-button").click(function(e){
         var username = $("#username").val();
         var password = $('#password').val();
-       // fingerauth(username, password);
+        var checkbox = $("#checkbox").is(":checked");
+        console.log(checkbox);
+        if (!localStorage.getItem("fingerauth") && checkbox){
+            fingerRegister();
+        }
+        fingerauth(username, password);
         
         $.ajax({
             type: "POST",
@@ -104,9 +122,34 @@ function loginSuccess(id, name, first, last, image, email){
         sessionStorage.removeItem('last');
         sessionStorage.removeItem('name');
     });
-   
+
+    $('#checkbox').click(function(e){
+            console.log("sot");
+
+    if(!this.checked){
+        localStorage.removeItem('remember');
+        localStorage.removeItem('rememberp');
+    }
+});
 }
 
+function fingerRegister(){
+    navigator.notification.confirm("Would you like to setup finger print login?", function(e){
+                console.log(e);
+                if (e == 1){
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }, ["Finger Print Login"], ["Continue", "Cancel"]);
+    FingerprintAuth.isAvailable(function (result){
+        var fingersave = localStorage.getItem("fingersave");
+        if(result.isAvailable ==  true && result.hasEnrolledFingerprints == true && !fingersave ){
+            
+                }
+    })
+}
 function fingerauth(user,pass){
             // Check if device supports fingerprint
     /*
@@ -116,7 +159,7 @@ function fingerauth(user,pass){
     *      hasEnrolledFingerprints:boolean
     *   }
     */
-    
+    console.log("In finger auth");
     FingerprintAuth.isAvailable(function (result) {
 
         console.log("FingerprintAuth available: " + JSON.stringify(result));
@@ -142,14 +185,14 @@ function fingerauth(user,pass){
                 console.log("Stringify " + _fingerResult);
                 if (_fingerResult.withFingerprint) {
                     console.log("Successfully encrypted credentials.");
-                    console.log("Encrypted credentials: " + result.token);
-                    localStorage.setItem('token', result.token);
+                    console.log("Encrypted credentials: " + _fingerResult.token);
+                    localStorage.setItem('token', _fingerResult.token);
                     console.log("Encrypted stuff stored");
                 } else if (_fingerResult.withBackup) {
                     console.log("Authenticated with backup password");
                 }
             // Error callback
-            }, function(err){
+            }, function errorCallback(err){
                     if (err === "Cancelled") {
                     console.log("FingerprintAuth Dialog Cancelled!");
                 } else {
@@ -170,9 +213,4 @@ function fingerauth(user,pass){
 
 }
 
-$('#checked').click(function(e){
-    if(!this.checked){
-        localStorage.removeItem('remember');
-        localStorage.removeItem('rememberp');
-    }
-})
+

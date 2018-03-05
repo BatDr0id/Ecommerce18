@@ -41,17 +41,45 @@ function getCategoryItems(){
                 createProduct(id, image, name, price, description, link);
             }
             }
-            
         });
+        
     }
+$('.item-setter').click(function(e){
+    console.log('click');
+    var ec = e.target;
+    var sid = ec.getAttribute('item-id');
+    var itemArray = [];
+    console.log(sid);cs
+        $.ajax({
+            type: 'GET', dataType: 'json', url: hurl+ '/wp-json/wc/v2/products/'+sid+'?consumer_key='+ck+'&consumer_secret='+cs,
+            success: function(data){
+                console.log(data);
+                
+                var descript = data.description;
+                var $dec = $(descript);
+                var name = data.name;
+                var slug = data.slug;
+                var content = data.short_description;
+                var $img = $dec[0].innerHTML;
+                var $image = $($img);
+                $img = $image[0].getAttribute('src');
+                itemArray.push(name, slug, content, $img);
+                console.log(itemArray);
+                sessionStorage.setItem('item-selected', JSON.stringify(itemArray));
+                window.location.href = "item.html";
+        }
+        });
+    });
 }
+
 function createProduct(id, img, name, price, description, linkToProduct ){
     $('.item-setter').append(
-        "<a id='item-link' href='" + linkToProduct + "'>"
-        +"<div class='item-post'>"
+    
+        "<div class='item-post' item-id='"+id+"'>"
         +"<div class = 'item-image-setter'>"
         +"<img id='item-image' src = '"+ img + "'></div>"
         +"<div class='item-title-setter'><p>" + name + "</p></div>"
-        +"<div class='item-content-descript'>" + description + "</div></div></a>"
+        +"<div class='item-content-descript'>" + description + "</div></div>"
         );
+
 }

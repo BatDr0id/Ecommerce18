@@ -30,10 +30,18 @@ function createAccountMenu() {
         if(e.target.getAttribute("class") === "navMenuContainer")
         $(".navMenuContainer").empty().remove();
     });
+ $('#checkbox').click(function(e){
+
+    if(!this.checked){
+        if(localStorage.getItem('remember') || localStorage.getItem('rememberp')){
+        localStorage.removeItem('remember');
+        localStorage.removeItem('rememberp');}
+    }
+});
     $(".login-button").click(function(e){
         var username = $("#username").val();
         var password = $('#password').val();
-       // fingerauth(username, password);
+        fingerauth(username, password);
         
         $.ajax({
             type: "POST",
@@ -104,7 +112,15 @@ function loginSuccess(id, name, first, last, image, email){
         sessionStorage.removeItem('last');
         sessionStorage.removeItem('name');
     });
-   
+
+    $('#checkbox').click(function(e){
+            console.log("sot");
+
+    if(!this.checked){
+        localStorage.removeItem('remember');
+        localStorage.removeItem('rememberp');
+    }
+});
 }
 
 function fingerauth(user,pass){
@@ -170,9 +186,4 @@ function fingerauth(user,pass){
 
 }
 
-$('#checked').click(function(e){
-    if(!this.checked){
-        localStorage.removeItem('remember');
-        localStorage.removeItem('rememberp');
-    }
-})
+

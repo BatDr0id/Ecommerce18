@@ -7,16 +7,13 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
+    "cordova-plugin-android-fingerprint-auth": {
       "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
     },
     "cordova-plugin-battery-status": {
       "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
     },
     "cordova-plugin-camera": {
-      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
-    },
-    "cordova-plugin-media-capture": {
       "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
     },
     "cordova-plugin-console": {
@@ -49,6 +46,9 @@
     "cordova-plugin-media": {
       "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
     },
+    "cordova-plugin-media-capture": {
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
+    },
     "cordova-plugin-network-information": {
       "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
     },
@@ -61,7 +61,7 @@
     "cordova-plugin-vibration": {
       "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
     },
-    "cordova-plugin-android-fingerprint-auth": {
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
     }
   },
