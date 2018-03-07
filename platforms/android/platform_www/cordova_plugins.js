@@ -1,14 +1,6 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
   {
-    "id": "cordova-plugin-android-fingerprint-auth.FingerprintAuth",
-    "file": "plugins/cordova-plugin-android-fingerprint-auth/www/FingerprintAuth.js",
-    "pluginId": "cordova-plugin-android-fingerprint-auth",
-    "clobbers": [
-      "FingerprintAuth"
-    ]
-  },
-  {
     "id": "cordova-plugin-battery-status.battery",
     "file": "plugins/cordova-plugin-battery-status/www/battery.js",
     "pluginId": "cordova-plugin-battery-status",
@@ -509,12 +501,19 @@ module.exports = [
       "navigator.notification",
       "navigator"
     ]
+  },
+  {
+    "id": "cordova-plugin-android-fingerprint-auth.FingerprintAuth",
+    "file": "plugins/cordova-plugin-android-fingerprint-auth/www/FingerprintAuth.js",
+    "pluginId": "cordova-plugin-android-fingerprint-auth",
+    "clobbers": [
+      "FingerprintAuth"
+    ]
   }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
-  "cordova-plugin-android-fingerprint-auth": "1.4.3",
   "cordova-plugin-battery-status": "1.1.2",
   "cordova-plugin-camera": "2.1.1",
   "cordova-plugin-console": "1.0.7",
@@ -533,7 +532,8 @@ module.exports.metadata =
   "cordova-plugin-splashscreen": "3.2.2",
   "cordova-plugin-statusbar": "2.1.3",
   "cordova-plugin-vibration": "2.1.6",
-  "cordova-plugin-whitelist": "1.3.3"
+  "cordova-plugin-whitelist": "1.3.3",
+  "cordova-plugin-android-fingerprint-auth": "1.4.3"
 };
 // BOTTOM OF METADATA
 });

@@ -33,7 +33,7 @@ function createMenu(){
     "<li><a href=''>Shop</a></li>"+
     "<li><a href=''>My Account</a></li>"+
     "</ul><div class='divider'></div>"+
-    "<ul class='productMenu'><li><a href='products.html'>All Products</a></li></ul>"
+    "<ul class='productMenu'><li><a class='menu-product-link' href='products.html' slug='all'>All Products</a></li></ul>"
     );
     if (localStorage.getItem("product_menu") !== 'undefined'){
         pmArray = JSON.parse(localStorage.getItem("product_menu"));
@@ -58,7 +58,7 @@ function createMenu(){
                 console.log(product);
                 var slug = product.getAttribute('slug');
                 var name = product.getAttribute('category');
-                sessionStorage.setItem("slug", slug);
+                sessionStorage.setItem("selected", slug);
                 sessionStorage.setItem("category", name);
         });
 }
