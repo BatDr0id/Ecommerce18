@@ -1,0 +1,84 @@
+
+.setter {
+    max-width: 30em;
+    min-width: 5em;
+    background-color: ;
+    height: 10.5em;
+    left: 0;
+    right: 0;
+    margin: 3.75em  auto 0 auto;  
+}
+
+.image-setter {
+    display: block;
+    width: 10em;
+    height: 10em;
+    overflow: hidden;
+    border-radius: 90px;
+    border: .25em solid black;
+    float: left;
+}
+.image-setter img {
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    position: relative;
+    width: auto;
+    height: 10em;
+    display: inline-block;
+}
+
+.title-setter {
+    max-width: 25em;
+    margin: auto;
+    display: block;
+}
+
+.title-divider {
+    max-width: 100%;
+    height: .2em;
+    background-color: black;
+    display: block;
+    position: relative;
+}
+.title p {
+    font-size: 1.5em
+}
+
+.title-profile-id {
+    font-family: Ebrima;
+    display: block;
+    font-size: 1.25em;
+    font-weight: 1000;
+}
+
+.title-profile {
+    width: 14em;
+    float: right;
+    padding-top: 3.75em;
+    padding-bottom: 4em;
+    display: block;
+    font-family: Ebrima;
+}
+
+.horizontal-setter {
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.title-name {
+    float: right;
+}
+
+.select-setter {
+    max-width: 25em;
+    min-width: 5em;
+    background-color: ;
+    height: 10.5em;
+    left: 0;
+    right: 0;
+    font-family: Ebrima;
+    font-weight: 1000;
+    margin: 1.25em auto 0 auto;
+}

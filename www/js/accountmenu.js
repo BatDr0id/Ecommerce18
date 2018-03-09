@@ -2,18 +2,14 @@ var remember = false; //used for remember me button
 var username, password; //user login
 var checkbox = false;
 var fingersave = localStorage.getItem("fingerauth");
-var cookie = sessionStorage.getItem('cookie');
+var id, name, first, last, image, email, capabilitiesm, cookie;
+
 function createAccountMenu() {
     //If remember me checkbox is checked retireve information on menu creation
-    if (localStorage.getItem('remember')){
-        username = localStorage.getItem('remember');
-        password = atob(localStorage.getItem('rememberp'));
-        console.log(password);
-        remember = true;
-    }
     
-    var id, name, first, last, image, email, capabilitiesm, cookie;
     //If user has loged in already create account menu
+    
+    cookie = sessionStorage.getItem('cookie');
     if(cookie){
         id = sessionStorage.getItem('id');
         name = sessionStorage.getItem('name');
@@ -23,6 +19,7 @@ function createAccountMenu() {
         email = sessionStorage.getItem('eamil');
         loginSuccess(id, name, first, last, image, email);
     }
+    
     //if there is no login present open login page
     else {
         $(".main").append(
@@ -43,6 +40,14 @@ function createAccountMenu() {
                 +"</div>"
             +"</div>"); 
     }
+    if (localStorage.getItem('remember')){
+        username = localStorage.getItem('remember');
+        password = atob(localStorage.getItem('rememberp'));
+        console.log(password);
+        remember = true;
+    }
+    
+    
     //if remeber me checkbox button is checked retrieve this infomation
     if (remember){
         $('#username').val(username);
@@ -73,14 +78,14 @@ function createAccountMenu() {
             }
         }
     );
-    if(fingerSave && !cookie){
+    if(fingersave && !cookie){
         fingerDecrypt();
         loginAjax();
     }
     $(".login-button").click(function(e){
-        var username = $("#username").val();
-        var password = $('#password').val();
-        var checkbox = $("#checkbox").is(":checked");
+        username = $("#username").val();
+        password = $('#password').val();
+        checkbox = $("#checkbox").is(":checked");
         
         //fingerauth(username, password);
         fingerRegister();
@@ -105,6 +110,7 @@ function successEncryption(_fingerResult){
             localStorage.setItem('token', _fingerResult.token);
         }
 }
+
 function loginSuccess(id, name, first, last, image, email){
     $(".main").append("<div class='navMenuContainer'>"+
             "<div class='navProfile' id='"+name+"' account-number='"+id+"'>"+
@@ -113,18 +119,24 @@ function loginSuccess(id, name, first, last, image, email){
                 "<div class='myAccountName'>"+name+"</div>"+
                 "<div class='divider'></div>"+
                 "<div class='accountMenu'>"+
-                   "<div id='orders'><a href=''>Orders</a></div>"+
-                   "<div id='prof-info'><a href=''>Profile Info.</a></div>"+
-                   "<div id='downloads'><a href=''>Downloads</a></div>"+
-                   "<div id='bill-info'><a href=''>Billing Info.</a></div>"+
+                   "<div class='account-link' slug='orders'><a href='#'>Orders</a></div>"+
+                   "<div class='account-link' slug='prof-info'><a href='#'>Profile Info.</a></div>"+
+                   "<div class='account-link' slug='downloads'><a href='#'>Downloads</a></div>"+
+                   "<div class='account-link' slug='bill-info'><a href='#'>Billing Info.</a></div>"+
                    "<div class='logout'><a href='#'>Logout</a></div>"+
                 "</div>"+
             "</div>"+
         "</div>"
     );
-     $(".navMenuContainer").click(function(e){
+    $(".navMenuContainer").click(function(e){
         if(e.target.getAttribute("class") === "navMenuContainer")
         $(".navMenuContainer").empty().remove();
+    });
+    $(".account-link").click(function(e){
+        e = $(this).attr("slug");
+        localStorage.setItem('customer-select', e);
+        window.location.href = "customer-profile.html";
+        
     });
     $('.logout').click(function(e){
         sessionStorage.removeItem('cookie');
@@ -140,9 +152,7 @@ function loginSuccess(id, name, first, last, image, email){
 }
 
 function fingerRegister(){
-   
     FingerprintAuth.isAvailable(function (result){
-        
         if(result.isAvailable ==  true && result.hasEnrolledFingerprints == true && !fingersave ){
             navigator.notification.confirm("Would you like to setup finger print login?", function(e){
                 console.log(e);
@@ -160,6 +170,7 @@ function fingerRegister(){
         }
     }, errorCallback);
 }
+
 function fingerEncrypt(){
     var token = localStorage.getItem('token');
     var encryptConfig = {
@@ -174,6 +185,7 @@ function fingerEncrypt(){
     }
     FingerprintAuth.encrypt(encryptConfig, sessionEncrypt, errorCallback );
 }
+
 function fingerDecrypt(username){
     var token = localStorage.getItem('token');
     var username = localStorage.getItem('remember');
@@ -189,6 +201,7 @@ function fingerDecrypt(username){
     }
     FingerprintAuth.decrypt(decryptConfig, sessionDecrypt, errorCallback );
 }
+
 function sessionEncrypt(result){
     console.log("successCallback(): "+ JSON.stringify(result));
     if (result.withFingerprint){
@@ -201,6 +214,7 @@ function sessionEncrypt(result){
         console.log("authenticated with backup");
     }
 }
+
 function sessionDecrypt(result){
     console.log("successCallback(): " + JSON.stringify(result));
     if (result.withFingerprint) {
@@ -214,6 +228,7 @@ function sessionDecrypt(result){
         console.log("Authenticated with backup password");
     }
 }
+
 function errorCallback(error){
     if (error === FingerprintAuth.ERRORS.FINGERPRINT_CANCELLED) {
         console.log("FingerprintAuth Dialog Cancelled!");
