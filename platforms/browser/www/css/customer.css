@@ -3,7 +3,7 @@
     max-width: 30em;
     min-width: 5em;
     background-color: ;
-    height: 10.5em;
+    height: 7.5em;
     left: 0;
     right: 0;
     margin: 3.75em  auto 0 auto;  
@@ -11,8 +11,8 @@
 
 .image-setter {
     display: block;
-    width: 10em;
-    height: 10em;
+    width: 7em;
+    height: 7em;
     overflow: hidden;
     border-radius: 90px;
     border: .25em solid black;
@@ -24,14 +24,17 @@
     transform: translateX(-50%) translateY(-50%);
     position: relative;
     width: auto;
-    height: 10em;
+    height: 7em;
     display: inline-block;
 }
 
 .title-setter {
+    left: 0; right: 0;
+    
     max-width: 25em;
     margin: auto;
     display: block;
+    height: 7.5em;
 }
 
 .title-divider {
@@ -54,9 +57,9 @@
 
 .title-profile {
     width: 14em;
-    float: right;
-    padding-top: 3.75em;
-    padding-bottom: 4em;
+    margin-left: 7em;
+    padding-top: 4em;
+    padding-bottom: 5em;
     display: block;
     font-family: Ebrima;
 }
@@ -68,17 +71,93 @@
 }
 
 .title-name {
-    float: right;
+    float:left; 
+   margin-left:-.4em;
 }
 
 .select-setter {
     max-width: 25em;
     min-width: 5em;
     background-color: ;
-    height: 10.5em;
     left: 0;
     right: 0;
     font-family: Ebrima;
     font-weight: 1000;
     margin: 1.25em auto 0 auto;
+}
+
+.order-setter {
+    background-color: #eee ;
+    margin-bottom: .3em;
+    
+}
+
+.customer-content {
+    
+    max-width: 25em;
+}
+
+.order-image {
+    float: left;
+    max-width: 5em;
+    max-height: 5em;
+    min-width: auto;
+    min-height: auto;
+}
+
+.order-image-setter {
+    height: 5em;
+    width: 5em;
+    padding: 1em;
+    float:left;
+}
+.order-name-setter {
+    height: 5em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    float: inherit;
+    border-top: .1em solid black;
+}
+.order-title {
+    max-width: 20em;
+    padding: 1em;
+    border-bottom: .1em solid black;
+    margin: auto;
+}
+
+.order-information {
+    padding: 1em;
+    max-width: 20em;
+    margin: auto;
+    font-weight: 100;
+    
+}
+.order-information p {
+    height: 1em;
+    font-size: .8em;
+}
+#order-shipping {
+    float: right;
+    text-align: right;
+    margin-top: -4em;
+        
+}
+
+.sub-order {
+    font-weight:100;
+    font-size: .8em;
+    height: 1.2em;
+}
+
+.order-content {
+    max-width: 22em;
+    margin: auto;
+}
+
+.title-center {
+    max-width:21em;
+    left: 0;
+    right: 0;
+    margin: auto;
+    position:fixed; 
 }

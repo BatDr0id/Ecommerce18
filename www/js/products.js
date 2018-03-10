@@ -20,7 +20,7 @@ function getCategoryItems(){
     else {
         
         if( selected == "all"){
-        urlReq = hurl + "/wp-json/wc/v2/products?per_page=50&consumer_key="+ck+"&consumer_secret="+cs;
+        urlReq = hurl + "/wp-json/wc/v2/products?per_page=50&"+authkey;
         $.ajax({
             type :"GET", dataType: "json" ,url:urlReq,
             success: function(data){
@@ -77,7 +77,7 @@ function getCategoryItems(){
             $.ajax({
                 type: 'GET', 
                 dataType: 'json', 
-                url: hurl+ '/wp-json/wc/v2/products/'+sid+'?consumer_key='+ck+'&consumer_secret='+cs,
+                url: hurl+ '/wp-json/wc/v2/products/'+sid+'?'+authkey,
                 success: function(data){
                     console.log(data);
                     var descript = data.description;

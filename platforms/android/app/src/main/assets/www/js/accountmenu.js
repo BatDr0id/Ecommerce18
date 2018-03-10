@@ -223,6 +223,7 @@ function sessionDecrypt(result){
             console.log("Successfully decrypted credential token.");
             console.log("password: " + result.password);  
             password = result.password;
+            loginAjax();
         }
     } else if (result.withBackup) {
         console.log("Authenticated with backup password");
@@ -241,7 +242,7 @@ function loginAjax(){
     $.ajax({
         type: "POST",
         dataType: "jsonp",
-        url: "https://www.ecommerce18.xyz/api/auth/generate_auth_cookie/?username="+username+"&password="+password,
+        url: hurl + "/api/auth/generate_auth_cookie/?username="+username+"&password="+password,
         success: function(data){
             console.log(data);
             auth = true;

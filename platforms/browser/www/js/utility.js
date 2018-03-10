@@ -2,6 +2,7 @@ var hurl = "https://ecommerce18.xyz";
 var auth = false;
 var ck = "ck_a88c9def695ef2c8accd8a04393f54d79b55890f";
 var cs = "cs_1aa3c7676c58e4a54ecf58db18fa7f6fd3d0ab3d"
+var authkey = "consumer_key="+ck+"&consumer_secret="+cs;
 function getPostData(){
     $.ajax({
         type: "GET", dataType: "json", url: hurl + "/wp-json/wp/v2/posts?fields=pwapp_author,content,title",
@@ -69,7 +70,7 @@ function getMenuItems(){
      if (localStorage.getItem("product_menu") == null){
     $.ajax({
         type: "GET", dataType: "json",
-        url: hurl + "/wp-json/wc/v2/products/categories?consumer_key="+ck+"&consumer_secret="+cs,
+        url: hurl + "/wp-json/wc/v2/products/categories?"+authkey,
         success: function (data){
             menu = data;
             for(i = 0; i < Object.keys(menu).length;i++){
