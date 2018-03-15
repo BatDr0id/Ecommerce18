@@ -1,7 +1,8 @@
 var remember = false; //used for remember me button
 var username, password; //user login
 var checkbox = false;
-var fingersave = localStorage.getItem("fingerauth");
+var login =false;
+var fingersave = localStorage.getItem("fingerauth");;
 var id, name, first, last, image, email, capabilitiesm, cookie;
 
 function createAccountMenu() {
@@ -18,10 +19,15 @@ function createAccountMenu() {
         image = sessionStorage.getItem('image');
         email = sessionStorage.getItem('eamil');
         loginSuccess(id, name, first, last, image, email);
+        login = true;
     }
-    
+
+    /*if(localStorage.getItem('token') && checkbox && localStorage.getItem('remember') && !cookie){
+        fingerDecrypt();
+    }*/
     //if there is no login present open login page
     else {
+        //alert('8');
         $(".main").append(
             "<div class='navMenuContainer'>"+
                 "<div class='navProfile'>"+
@@ -39,6 +45,11 @@ function createAccountMenu() {
                     "<input type='checkbox' id='checkbox'/>"
                 +"</div>"
             +"</div>"); 
+        login = false;
+        if(localStorage.getItem('token') && localStorage.getItem('fingerauth') == 'true' && login == false){
+                //alert("4");
+                fingerDecrypt();
+        }
     }
     if (localStorage.getItem('remember')){
         username = localStorage.getItem('remember');
@@ -46,8 +57,8 @@ function createAccountMenu() {
         console.log(password);
         remember = true;
     }
-    
-    
+  
+    //console.log(checkbox);
     //if remeber me checkbox button is checked retrieve this infomation
     if (remember){
         $('#username').val(username);
@@ -56,19 +67,19 @@ function createAccountMenu() {
         }
         $('#checkbox').prop('checked',true);
     }
-    
     //Click listener to close the menu if anywhere outside the menu is clicked
     $(".navMenuContainer").click(function(e){
         if(e.target.getAttribute("class") === "navMenuContainer")
         $(".navMenuContainer").empty().remove();
     });
     
-    
     $('#checkbox').click(function(e){
         if(!this.checked){
             if(localStorage.getItem('remember') || localStorage.getItem('rememberp')){
                 localStorage.removeItem('remember');
-                localStorage.removeItem('rememberp');}
+                localStorage.removeItem('rememberp');
+                localStorage.removeItem('token');
+            }
                 checkbox = false;
                 $('#checkbox').prop('checked',false);
                 remember = false;
@@ -78,18 +89,14 @@ function createAccountMenu() {
             }
         }
     );
-    if(fingersave && !cookie){
-        fingerDecrypt();
-        loginAjax();
-    }
+    
     $(".login-button").click(function(e){
         username = $("#username").val();
         password = $('#password').val();
         checkbox = $("#checkbox").is(":checked");
-        
         //fingerauth(username, password);
         fingerRegister();
-        loginAjax();
+         
     });
 }
 
@@ -100,9 +107,8 @@ function successEncryption(_fingerResult){
             console.log("Successfully encrypted credentials.");
             console.log("Encrypted credentials: " + _fingerResult.token);
             localStorage.setItem('token', _fingerResult.token);
-            localStorage.setItem('fingerauth', true);
+            localStorage.setItem('fingerauth', 'true');
             console.log("Encrypted stuff stored");
-            console.log(localStorage.setItem('fingerauth', true) );
         } else if (_fingerResult.withBackup) {
             console.log("Authenticated with backup password");
         }
@@ -112,6 +118,7 @@ function successEncryption(_fingerResult){
 }
 
 function loginSuccess(id, name, first, last, image, email){
+    $(".navMenuContainer").empty().remove();
     $(".main").append("<div class='navMenuContainer'>"+
             "<div class='navProfile' id='"+name+"' account-number='"+id+"'>"+
                 "<p class='myProfileName' >"+first+ " "+last+"</p>"+
@@ -129,8 +136,8 @@ function loginSuccess(id, name, first, last, image, email){
         "</div>"
     );
     $(".navMenuContainer").click(function(e){
-        if(e.target.getAttribute("class") === "navMenuContainer")
-        $(".navMenuContainer").empty().remove();
+        if(e.target.getAttribute("class") === "navMenuContainer"){
+            $(".navMenuContainer").empty().remove();}
     });
     $(".account-link").click(function(e){
         e = $(this).attr("slug");
@@ -148,86 +155,111 @@ function loginSuccess(id, name, first, last, image, email){
         sessionStorage.removeItem('item-selected');
         sessionStorage.removeItem('last');
         sessionStorage.removeItem('name');
+        //alert('3');
+        createAccountMenu();
     });
 }
 
 function fingerRegister(){
-    FingerprintAuth.isAvailable(function (result){
-        if(result.isAvailable ==  true && result.hasEnrolledFingerprints == true && !fingersave ){
-            navigator.notification.confirm("Would you like to setup finger print login?", function(e){
-                console.log(e);
-                if (e == 1){
-                    fingerEncrypt();
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            }, ["Finger Print Login"], ["Continue", "Cancel"]);
-        }
-        else if (result.isAvailable ==  true && result.hasEnrolledFingerprints == true && fingersave ){
-            fingerDecrypt();
-        }
-    }, errorCallback);
+    //alert('6');
+    if (checkbox == false){
+        loginAjax();
+    }
+    else{
+        FingerprintAuth.isAvailable(function (result){
+            if(result.isAvailable ==  true && result.hasEnrolledFingerprints == true && checkbox && !localStorage.getItem('token') ){
+                //alert("3");
+                navigator.notification.confirm("Would you like to setup finger print login?", function(e){
+                    console.log(e);
+                    if (e == 1){
+                        fingerEncrypt();
+                    }
+                    else {
+                        loginAjax();
+                    }
+                }, ["Finger Print Login"], ["Continue", "Cancel"]);
+            }
+            /*else if (result.isAvailable ==  true && result.hasEnrolledFingerprints == true && localStorage.getItem('token') && checkbox && localStorage.getItem('fingerauth') == 'true'){
+                //alert("4");
+                fingerDecrypt();
+            }*/
+            else {
+                //alert('5');
+                loginAjax();
+            }
+
+
+        }, function(){
+           // alert('6');
+            loginAjax();
+        });
+    }
 }
 
 function fingerEncrypt(){
-    var token = localStorage.getItem('token');
+    
     var encryptConfig = {
         clientId: "Ecommerce18",
         username: username,
-        token: password,
+        password: password,
         maxAttempts: 5,
         locale: "en_US",
-        dialogTitle: "Hey dude, your finger to login now",
+        dialogTitle: "Lets begin fingerprint authentication",
         dialogMessage: "Put your finger on the device",
         dialogHint: "No one will steal your identity, promised"
     }
     FingerprintAuth.encrypt(encryptConfig, sessionEncrypt, errorCallback );
 }
-
-function fingerDecrypt(username){
-    var token = localStorage.getItem('token');
-    var username = localStorage.getItem('remember');
-    var decryptConfig = {
-        clientId: "Ecommerce18",
-        username: username,
-        token: token,
-        maxAttempts: 5,
-        locale: "en_US",
-        dialogTitle: "Hey dude, your finger to login now",
-        dialogMessage: "Put your finger on the device",
-        dialogHint: "No one will steal your identity, promised"
-    }
-    FingerprintAuth.decrypt(decryptConfig, sessionDecrypt, errorCallback );
-}
-
 function sessionEncrypt(result){
     console.log("successCallback(): "+ JSON.stringify(result));
     if (result.withFingerprint){
-        console.log("Successfully encrypted");
-        console.log("Resulting token " + result.token);
+        //console.log("Successfully encrypted");
+        //console.log("Resulting token " + result.token);
         localStorage.setItem('token', result.token);
-        localStorage.setItem('fingerauth', true);
+        localStorage.setItem('fingerauth', 'true');
+        loginAjax();
     }
     else if(result.withFingerprint){
         console.log("authenticated with backup");
-    }
+        loginAjax();
+    }  
 }
-
+function fingerDecrypt(){
+    //alert('5');
+    if (login == false){
+        var localtoken = localStorage.getItem('token');
+        //alert(localtoken);
+        username = localStorage.getItem('remember');
+        //alert(username + " "+ localtoken);
+        var decryptConfig = {
+            clientId: "Ecommerce18",
+            username: username,
+            token: localtoken,
+            maxAttempts: 5,
+            locale: "en_US",
+            dialogTitle: "Hey dude, your finger to login now",
+            dialogMessage: "Put your finger on the device",
+            dialogHint: "No one will steal your identity, promised"
+        }
+        FingerprintAuth.decrypt(decryptConfig, sessionDecrypt, errorCallback );}
+}
 function sessionDecrypt(result){
-    console.log("successCallback(): " + JSON.stringify(result));
+   // console.log("successCallback(): " + JSON.stringify(result));
     if (result.withFingerprint) {
-        console.log("Successful biometric authentication.");
+        //console.log("Successful biometric authentication.");
+        //alert(result.password);
         if (result.password) {
-            console.log("Successfully decrypted credential token.");
-            console.log("password: " + result.password);  
+            //console.log("Successfully decrypted credential token.");
+            //console.log("password: " + result.password);  
             password = result.password;
             loginAjax();
+            
         }
     } else if (result.withBackup) {
-        console.log("Authenticated with backup password");
+        //console.log("Authenticated with backup password");
+        loginAjax();
     }
+    
 }
 
 function errorCallback(error){
@@ -237,38 +269,45 @@ function errorCallback(error){
         console.log("FingerprintAuth Error: " + error);
     }
 }
-
 function loginAjax(){
     $.ajax({
         type: "POST",
         dataType: "jsonp",
         url: hurl + "/api/auth/generate_auth_cookie/?username="+username+"&password="+password,
         success: function(data){
-            console.log(data);
-            auth = true;
-            createAccountMenu();
-            id = data.user.id;
-            name = data.user.username;
-            first = data.user.firstname;
-            last = data.user.lastname;
-            image = data.user.avatar;
-            email = data.user.email;
-            cookie = data.cookie;
-            capabilities = data.user.capabilities;
-            $(".navMenuContainer").empty().remove();
-            loginSuccess(id, name, first, last, image, email);
-            sessionStorage.setItem("id", id);
-            sessionStorage.setItem('name', name);
-            sessionStorage.setItem('first', first);
-            sessionStorage.setItem('last', last);
-            sessionStorage.setItem('image', image);
-            sessionStorage.setItem('email', email);
-            sessionStorage.setItem('capabilities', capabilities);
-            sessionStorage.setItem('cookie', cookie);
-            if (checkbox){
-                localStorage.setItem('remember', username);
-                localStorage.setItem('rememberp', btoa(password));
+            if (!data.error){
+                login = true;
+                console.log(data);
+                auth = true;
+                id = data.user.id;
+                name = data.user.username;
+                first = data.user.firstname;
+                last = data.user.lastname;
+                image = data.user.avatar;
+                email = data.user.email;
+                cookie = data.cookie;
+                capabilities = data.user.capabilities;
+                sessionStorage.setItem("id", id);
+                sessionStorage.setItem('name', name);
+                sessionStorage.setItem('first', first);
+                sessionStorage.setItem('last', last);
+                sessionStorage.setItem('image', image);
+                sessionStorage.setItem('email', email);
+                sessionStorage.setItem('capabilities', capabilities);
+                sessionStorage.setItem('cookie', cookie);
+                if (checkbox){
+                    localStorage.setItem('remember', username);
+                    localStorage.setItem('rememberp', btoa(password));
+                }
+                
+                
+                loginSuccess(id, name, first, last, image, email);
+                
             }
+            else {
+                alert("Something went wrong. Please try again");
+            }
+            
         }
     });
 }

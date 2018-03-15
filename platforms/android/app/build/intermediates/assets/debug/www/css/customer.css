@@ -3,7 +3,7 @@
     max-width: 30em;
     min-width: 5em;
     background-color: ;
-    height: 10.5em;
+    height: 7.5em;
     left: 0;
     right: 0;
     margin: 3.75em  auto 0 auto;  
@@ -11,8 +11,8 @@
 
 .image-setter {
     display: block;
-    width: 10em;
-    height: 10em;
+    width: 7em;
+    height: 7em;
     overflow: hidden;
     border-radius: 90px;
     border: .25em solid black;
@@ -24,14 +24,17 @@
     transform: translateX(-50%) translateY(-50%);
     position: relative;
     width: auto;
-    height: 10em;
+    height: 7em;
     display: inline-block;
 }
 
 .title-setter {
+    left: 0; right: 0;
+    
     max-width: 25em;
     margin: auto;
     display: block;
+    height: 7.5em;
 }
 
 .title-divider {
@@ -54,9 +57,9 @@
 
 .title-profile {
     width: 14em;
-    float: right;
-    padding-top: 3.75em;
-    padding-bottom: 4em;
+    margin-left: 7em;
+    padding-top: 4em;
+    padding-bottom: 5em;
     display: block;
     font-family: Ebrima;
 }
@@ -68,7 +71,8 @@
 }
 
 .title-name {
-    float: right;
+    float:left; 
+   margin-left:-.4em;
 }
 
 .select-setter {
@@ -83,12 +87,13 @@
 }
 
 .order-setter {
-    
+    background-color: #eee ;
+    margin-bottom: .3em;
     
 }
 
 .customer-content {
-    background-color: #eee ;
+    
     max-width: 25em;
 }
 
@@ -111,7 +116,7 @@
     padding-bottom: 1em;
     padding-top: 1em;
     float: inherit;
-    border-bottom: .1em solid black;
+    border-top: .1em solid black;
 }
 .order-title {
     max-width: 20em;
@@ -125,7 +130,6 @@
     max-width: 20em;
     margin: auto;
     font-weight: 100;
-    border-bottom: .1em solid black
     
 }
 .order-information p {
@@ -143,4 +147,17 @@
     font-weight:100;
     font-size: .8em;
     height: 1.2em;
+}
+
+.order-content {
+    max-width: 22em;
+    margin: auto;
+}
+
+.title-center {
+    max-width:21em;
+    left: 0;
+    right: 0;
+    margin: auto;
+    position:fixed; 
 }
