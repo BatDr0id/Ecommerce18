@@ -5,20 +5,20 @@ function getCategoryItems(){
     if(sessionStorage.getItem(selected)){
         var array = [];
         array = JSON.parse(sessionStorage.getItem(selected));
+        console.log("Hello");
         console.log(array);
         for(i = 0; i < Object.keys(array).length;i++){
-            var name = array[i].title;
+            var name = array[i].name;
             var slug = array[i].slug;
-            var description = "<p>"+ array[i].description + "</p>";
+            var description = array[i].short_description;
             var id = array[i].id;
-            var link = array[i].guid;
-            var image = array[i].image;
+            var link = array[i].permalink;
+            var image = array[i].images[0].src;
             var price = array[i].price;
             createProduct(id, image, name, price, description, link);
         }
     }
     else {
-        
         if( selected == "all"){
         urlReq = hurl + "/wp-json/wc/v2/products?per_page=50&"+authkey;
         $.ajax({
@@ -30,7 +30,6 @@ function getCategoryItems(){
                 for(i = 0; i < Object.keys(data).length;i++){
                     var name = data[i].name;
                     var slug = data[i].slug;
-                    var link = data[i]._links.self[0].href;
                     var description = data[i].short_description;
                     var id = data[i].id;
                     var link = data[i].permalink;
@@ -64,19 +63,20 @@ function getCategoryItems(){
 
                     }
                 }
-            }); 
+            });
         }
     }
    
-    $('.item-setter').click(function(e){
+    $('.item-post').click(function(e){
         console.log('click');
-        var ec = e.target;
+        console.log(e);
+        var ec = e.currentTarget;
         var sid = ec.getAttribute('item-id');
         var itemArray = [];
-        console.log(sid);cs
-            $.ajax({
-                type: 'GET', 
-                dataType: 'json', 
+        console.log(sid);
+           $.ajax({
+                type: 'GET',
+                dataType: 'json',
                 url: hurl+ '/wp-json/wc/v2/products/'+sid+'?'+authkey,
                 success: function(data){
                     console.log(data);
@@ -107,8 +107,4 @@ function createProduct(id, img, name, price, description, linkToProduct ){
         );
 
 }
-$("backbutton").on(function(){
-    console.log("back");
-})
-
 

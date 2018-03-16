@@ -6,7 +6,7 @@
     height: 7.5em;
     left: 0;
     right: 0;
-    margin: 3.75em  auto 0 auto;  
+    margin: 3.75em  auto 0 auto;
 }
 
 .image-setter {
@@ -71,7 +71,7 @@
 }
 
 .title-name {
-    float:left; 
+    float:left;
    margin-left:-.4em;
 }
 
@@ -159,5 +159,5 @@
     left: 0;
     right: 0;
     margin: auto;
-    position:fixed; 
+    position:fixed;
 }

@@ -42,7 +42,7 @@ function orders(){
                             '</div>'+
                             '<div class="order-content-setter" id='+i+'>'+
                             '</div>'+
-                        '</div>'+            
+                        '</div>'+
                     '</div>');
                 var lineitem = data.orders[i].line_items;
                 console.log(lineitem[0].product_id);

@@ -44,7 +44,7 @@ function createAccountMenu() {
                     "<p id='checkText'>Remember Me</p>"+
                     "<input type='checkbox' id='checkbox'/>"
                 +"</div>"
-            +"</div>"); 
+            +"</div>");
         login = false;
         if(localStorage.getItem('token') && localStorage.getItem('fingerauth') == 'true' && login == false){
                 //alert("4");
@@ -222,7 +222,7 @@ function sessionEncrypt(result){
     else if(result.withFingerprint){
         console.log("authenticated with backup");
         loginAjax();
-    }  
+    }
 }
 function fingerDecrypt(){
     //alert('5');
@@ -250,7 +250,7 @@ function sessionDecrypt(result){
         //alert(result.password);
         if (result.password) {
             //console.log("Successfully decrypted credential token.");
-            //console.log("password: " + result.password);  
+            //console.log("password: " + result.password);
             password = result.password;
             loginAjax();
             
