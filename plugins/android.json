@@ -8,33 +8,66 @@
   },
   "installed_plugins": {
     "cordova-plugin-battery-status": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
     },
     "cordova-plugin-camera": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
     },
     "cordova-plugin-console": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
     },
     "cordova-plugin-contacts": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
     },
     "cordova-plugin-device-motion": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
     },
     "cordova-plugin-device-orientation": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
     },
     "cordova-plugin-dialogs": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
+    },
+    "cordova-plugin-globalization": {
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
+    },
+    "cordova-plugin-media": {
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
+    },
+    "cordova-plugin-media-capture": {
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
+    },
+    "cordova-plugin-android-fingerprint-auth": {
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
     }
   },
   "dependent_plugins": {
     "cordova-plugin-file": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "ecommerce18.xyz.ecommerce18"
     }
   }
 }
