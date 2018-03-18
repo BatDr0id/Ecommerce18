@@ -98,26 +98,29 @@
 }
 
 .order-image {
-    float: left;
     max-width: 5em;
     max-height: 5em;
-    min-width: auto;
-    min-height: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto auto;
+    display: block;
+    vertical-align: middle;
+    background-color:#fff;
+
 }
 
 .order-image-setter {
+    margin: 1em 1em 1em 1em;
     height: 5em;
     width: 5em;
-    padding: 1em;
-    float:left;
+    float: left;
+    vertical-align: middle;
+    display: block;
+    
 }
-.order-name-setter {
-    height: 5em;
-    padding-bottom: 1em;
-    padding-top: 1em;
-    float: inherit;
-    border-top: .1em solid black;
-}
+
 .order-title {
     max-width: 20em;
     padding: 1em;
@@ -139,7 +142,7 @@
 #order-shipping {
     float: right;
     text-align: right;
-    margin-top: -4em;
+    margin-top: -3em;
         
 }
 
@@ -159,5 +162,7 @@
     left: 0;
     right: 0;
     margin: auto;
-    position:fixed;
+
 }
+
+
