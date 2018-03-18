@@ -148,8 +148,6 @@ function loginSuccess(id, name, first, last, image, email){
         else if (e == 'prof-info'){
             window.location.href = "profile-info.html";
         }
-        
-        
     });
     $('.logout').click(function(e){
         sessionStorage.removeItem('cookie');
@@ -168,6 +166,7 @@ function loginSuccess(id, name, first, last, image, email){
 
 function fingerRegister(){
     //alert('6');
+    
     if (checkbox == false){
         loginAjax();
     }
