@@ -2,36 +2,34 @@ var selection;
 var data;
 var id, username, first, last;
 var address, orderId, orderStatus, total, quantity;
-var itemId, itemName, itemQuantity, itemtotal
+var itemId, itemName, itemQuantity, itemtotal, itemImage
 function initiate(){
     var selection = localStorage.getItem("customer-select");
     $('.title-profile-id').html(sessionStorage.getItem('first') + ' ' + sessionStorage.getItem('last'));
     $('.title-name').html(sessionStorage.getItem('name'));
-    switch (selection){
-        case "orders":
-            orders();
-            break;
-        case "downloads":
-            break;
-    }
+    $('.image-setter-image').attr('src', sessionStorage.getItem('image'));
+    orders();
 }
 function orders(){
     var userid = sessionStorage.getItem('id');
     $.ajax({
-        type: "GET",
+        type: "POST",
+        data: {user_id: sessionStorage.getItem('id')},
         dataType: "json",
-        url:hurl +"/wc-api/v3/orders?filter[customer_id]="+userid+"&"+authkey,
+        url:hurl +"/custom/get-orders-info.php",
         success: function(data){
             console.log(data);
-            for(i=0; i < Object.keys(data.orders).length; i++){
-                console.log(i);
-                address = "<br>"+data.orders[i].billing_address.address_1+"<br>"+data.orders[i].billing_address.city+
-                ", "+data.orders[i].billing_address.state+" "+data.orders[i].billing_address.postcode;
-                orderId = data.orders[i].id;
-                orderStatus = data.orders[i].status;
-                total = data.orders[i].total;
-                quantity = data.orders[i].total_line_items_quantity;
+        
+            for(i=1; i <= Object.keys(data).length; i++){
+                console.log(data[1].billing_info);
+                address = "<br>"+data[i].billing_info.address_1+"<br>"+data[i].billing_info.city+
+                ", "+data[i].billing_info.state+" "+data[i].billing_info.postcode;
+                orderId = data[i].order_id;
+                orderStatus = data[i].status;
+                total = data[i].order_total;
+                quantity = data[i].items.length;
                 $('.customer-content').append(
+                    '<div class="title-divider"></div>'+
                     '<div class="order-setter">'+
                             '<div class="order-information">'+
                                 '<p id="order-number">Order Numer: '+orderId+'</p>'+
@@ -44,23 +42,25 @@ function orders(){
                             '</div>'+
                         '</div>'+
                     '</div>');
-                var lineitem = data.orders[i].line_items;
+                var lineitem = data[i].  items;
                 console.log(lineitem[0].product_id);
                 for(j=0; j < lineitem.length; j++){
                     itemId = lineitem[j].product_id;
-                    itemName = lineitem[j].name;
+                    itemName = lineitem[j].item_name;
                     itemQuantity = lineitem[j].quantity;
+                    itemtotal = lineitem[j].subtotal;
+                    itemImage = lineitem[j].image;
                     var string = "#"+i;
                     console.log(string);
                     $(string).append(
                         '<div class="order-content">'+
                             '<div class="order-image-setter">'+
-                                '<img class="order-image" src="img/Frameworks/0x11f7f24ae4cbbef191cff1a711df9e1_729e92116ce550fff4d2164d0de359ed_0_.jpg" alt="">'+
+                                '<img class="order-image" src="'+itemImage+'" alt="">'+
                             '</div>'+
                             '<div class="order-name-setter">'+
-                                '<p class="order-name">Hello</p>'+
-                                '<p class="order-price sub-order">Price $46.09</p>'+
-                                '<p class="order-item-quantity sub-order">Quantity: 1</p>'+
+                                '<p class="order-name">'+itemName+'</p>'+
+                                '<p class="order-price sub-order">Price $'+itemtotal+'</p>'+
+                                '<p class="order-item-quantity sub-order">Quantity: '+itemQuantity+'</p>'+
                             '</div>'
                     );
                 }
