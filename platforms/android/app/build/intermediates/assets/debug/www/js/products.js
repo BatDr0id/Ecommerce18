@@ -5,17 +5,32 @@ function getCategoryItems(){
     if(sessionStorage.getItem(selected)){
         var array = [];
         array = JSON.parse(sessionStorage.getItem(selected));
-        console.log(array);
-        for(i = 0; i < Object.keys(array).length;i++){
-            var name = array[i].title;
-            var slug = array[i].slug;
-            var description = "<p>"+ array[i].description + "</p>";
-            var id = array[i].id;
-            var link = array[i].guid;
-            var image = array[i].image;
-            var price = array[i].price;
-            createProduct(id, image, name, price, description, link);
+        //console.log(array);
+        if (selected == 'all'){
+            for(i = 0; i < Object.keys(array).length;i++){
+                var name = array[i].name;
+                var slug = array[i].slug;
+                var description =array[i].short_description;
+                var id = array[i].id;
+                var link = array[i].permalink;
+                var image = array[i].images[0].src;
+                var price = array[i].price;
+                createProduct(id, image, name, price, description, link);
+            }
         }
+        else{
+            for(i = 0; i < Object.keys(array).length;i++){
+                var name = array[i].title;
+                var slug = array[i].slug;
+                var description = "<p>"+ array[i].description + "</p>";
+                var id = array[i].id;
+                var link = array[i].guid;
+                var image = array[i].image;
+                var price = array[i].price;
+                createProduct(id, image, name, price, description, link);
+            }
+        }
+        
     }
     else {
         
@@ -24,7 +39,7 @@ function getCategoryItems(){
         $.ajax({
             type :"GET", dataType: "json" ,url:urlReq,
             success: function(data){
-                console.log(data);
+                //console.log(data);
                 stringify = JSON.stringify(data);
                 sessionStorage.setItem(sessionStorage.getItem('selected'), stringify);
                 for(i = 0; i < Object.keys(data).length;i++){
@@ -49,7 +64,7 @@ function getCategoryItems(){
                 data: {slug: sessionStorage.getItem("selected")},
                 dataType: "json",
                 success: function(data){
-                    console.log(data);
+                    //console.log(data);
                     stringify = JSON.stringify(data);
                     sessionStorage.setItem(sessionStorage.getItem('selected'), stringify);
                     for(i = 0; i < Object.keys(data).length;i++){
@@ -67,19 +82,19 @@ function getCategoryItems(){
             }); 
         }
     }
-   
-    $('.item-setter').click(function(e){
-        console.log('click');
-        var ec = e.target;
+    $('.item-post').click(function(e){
+        //console.log('click');
+        //console.log(e);
+        var ec = e.currentTarget;
         var sid = ec.getAttribute('item-id');
         var itemArray = [];
-        console.log(sid);cs
-            $.ajax({
-                type: 'GET', 
-                dataType: 'json', 
+        //console.log(sid);
+           $.ajax({
+                type: 'GET',
+                dataType: 'json',
                 url: hurl+ '/wp-json/wc/v2/products/'+sid+'?'+authkey,
                 success: function(data){
-                    console.log(data);
+                    //console.log(data);
                     var descript = data.description;
                     var $dec = $(descript);
                     var name = data.name;
@@ -89,7 +104,7 @@ function getCategoryItems(){
                     var $image = $($img);
                     $img = $image[0].getAttribute('src');
                     itemArray.push(name, slug, content, $img);
-                    console.log(itemArray);
+                    //console.log(itemArray);
                     sessionStorage.setItem('item-selected', JSON.stringify(itemArray));
                     window.location.href = "item.html";
             }
@@ -107,8 +122,4 @@ function createProduct(id, img, name, price, description, linkToProduct ){
         );
 
 }
-$("backbutton").on(function(){
-    console.log("back");
-})
-
 

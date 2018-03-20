@@ -1,0 +1,177 @@
+.setter {
+    max-width: 30em;
+    min-width: 5em;
+    background-color: ;
+    height: 7.5em;
+    left: 0;
+    right: 0;
+    margin: 3.75em  auto 0 auto;
+}
+
+.image-setter {
+    display: block;
+    width: 7em;
+    height: 7em;
+    overflow: hidden;
+    border-radius: 90px;
+    border: .25em solid black;
+    float: left;
+}
+.image-setter img {
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    position: relative;
+    width: auto;
+    height: 7em;
+    display: inline-block;
+}
+
+.title-setter {
+    left: 0; right: 0;
+    max-width: 25em;
+    margin: auto;
+    display: block;
+    height: 7.5em;
+}
+
+.title-divider {
+    max-width: 100%;
+    height: .2em;
+    background-color: black;
+    display: block;
+    position: relative;
+}
+.title p {
+    font-size: 1.5em
+}
+
+.title-profile-id {
+    font-family: Ebrima;
+    display: block;
+    font-size: 1.25em;
+    font-weight: 1000;
+}
+
+.title-profile {
+    width: 14em;
+    margin-left: 7em;
+    padding-top: 4em;
+    padding-bottom: 5em;
+    display: block;
+    font-family: Ebrima;
+}
+
+.horizontal-setter {
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.title-name {
+    float:left;
+   margin-left:-.4em;
+}
+
+.select-setter {
+    max-width: 25em;
+    min-width: 5em;
+    left: 0;
+    right: 0;
+    font-family: Ebrima;
+    font-weight: 1000;
+    margin: 1.25em auto 0 auto;
+}
+
+.order-setter {
+    background-color: #eee ;
+    margin-bottom: .3em;
+    
+}
+
+.customer-content {
+    max-width: 25em;
+}
+
+.order-image {
+    max-width: 5em;
+    max-height: 5em;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto auto;
+    display: block;
+    vertical-align: middle;
+    background-color:#fff;
+}
+.order-image-setter {
+    margin: 1em 1em 1em 1em;
+    height: 5em;
+    width: 5em;
+    float: left;
+    vertical-align: middle;
+    display: block;
+}
+.order-name-setter {
+    height: 5em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    float: inherit;
+    border-bottom: .1em solid black;
+}
+.order-title {
+    max-width: 20em;
+    padding: 1em;
+    border-bottom: .1em solid black;
+    margin: auto;
+}
+
+.order-information {
+    padding: 1em;
+    max-width: 20em;
+    margin: auto;
+    font-weight: 100;
+    
+}
+
+#order-shipping {
+    float: right;
+    text-align: right;
+    margin-top: -3em;
+        
+}
+
+.sub-order {
+    font-weight:100;
+    font-size: .8em;
+    height: 1.2em;
+}
+
+.order-content {
+    max-width: 22em;
+    margin: auto;
+}
+
+.title-center {
+    max-width:21em;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+}
+.downloads-left {
+    font-size: .8em;
+
+}
+.download-button {
+    float: right;
+    margin-top: 1em;
+    border: none;
+    background: url('../img/Frameworks/download-icon.png') no-repeat;
+
+    height: 2em;
+    background-size: 2em 2em;
+    width: 2em;
+    
+}

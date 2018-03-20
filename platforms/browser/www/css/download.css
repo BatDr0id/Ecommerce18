@@ -6,6 +6,7 @@
     left: 0;
     right: 0;
     margin: 3.75em  auto 0 auto;
+    padding: 0em 2em;
 }
 
 .image-setter {
@@ -35,8 +36,15 @@
     height: 7.5em;
 }
 
+.title-divider-main {
+    max-width:12em;
+    height: .2em;
+    background-color: black;
+    display: block;
+    position: relative;
+}
 .title-divider {
-    max-width: 100%;
+    max-width:30em;
     height: .2em;
     background-color: black;
     display: block;
@@ -76,11 +84,13 @@
 .select-setter {
     max-width: 25em;
     min-width: 5em;
+    background-color: ;
     left: 0;
     right: 0;
     font-family: Ebrima;
     font-weight: 1000;
     margin: 1.25em auto 0 auto;
+    padding: 0 2em;
 }
 
 .order-setter {
@@ -169,7 +179,7 @@
     margin-top: 1em;
     border: none;
     background: url('../img/Frameworks/download-icon.png') no-repeat;
-
+    padding-right: 2em;
     height: 2em;
     background-size: 2em 2em;
     width: 2em;
