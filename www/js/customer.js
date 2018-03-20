@@ -1,7 +1,7 @@
 var selection;
 var data;
 var id, username, first, last;
-var address, orderId, orderStatus, total, quantity;
+var address, orderId, orderStatus, total, quantity, temp;
 var itemId, itemName, itemQuantity, itemtotal, itemImage
 function initiate(){
     var selection = localStorage.getItem("customer-select");
@@ -18,16 +18,21 @@ function orders(){
         dataType: "json",
         url:hurl +"/custom/get-orders-info.php",
         success: function(data){
-            //console.log(data);
-        
+            console.log(data);
+            
+            
             for(i=1; i <= Object.keys(data).length; i++){
+                quantity = 0;
                 //console.log(data[1].billing_info);
                 address = "<br>"+data[i].billing_info.address_1+"<br>"+data[i].billing_info.city+
                 ", "+data[i].billing_info.state+" "+data[i].billing_info.postcode;
                 orderId = data[i].order_id;
                 orderStatus = data[i].status;
                 total = data[i].order_total;
-                quantity = data[i].items.length;
+                for(j=0; j < data[i].items.length; j++){
+                    console.log(data[i].items[j].quantity);
+                   quantity += parseInt(data[i].items[j].quantity);
+                }
                 $('.customer-content').append(
                     '<div class="title-divider"></div>'+
                     '<div class="order-setter">'+
