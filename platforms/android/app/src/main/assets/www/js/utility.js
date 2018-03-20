@@ -31,8 +31,8 @@ function createMenu(){
     "<div class='navMenuContainer'>"+
     "<nav class='navMenu'>" +
     "<ul><li><a href='index.html'>Home</a></li>"+
-    "<li><a href=''>Shop</a></li>"+
-    "<li><a href=''>My Account</a></li>"+
+    //"<li><a href=''>Shop</a></li>"+
+    //"<li><a href=''>My Account</a></li>"+
     "</ul><div class='divider'></div>"+
     "<ul class='productMenu'><li><a class='menu-product-link' href='products.html' slug='all'>All Products</a></li></ul>"
     );
@@ -42,7 +42,7 @@ function createMenu(){
             var name = pmArray[i][0];
             var slug = pmArray[i][1];
             var link = pmArray[i][2];
-            console.log(name);
+            //console.log(name);
             createProductMenu(name, slug);
         }
     }
@@ -56,7 +56,7 @@ function createMenu(){
     $('.menu-product-link').click(
             function(e){
                 var product =  e.target;
-                console.log(product);
+                //console.log(product);
                 var slug = product.getAttribute('slug');
                 var name = product.getAttribute('category');
                 sessionStorage.setItem("selected", slug);

@@ -1,3 +1,4 @@
+
 .setter {
     max-width: 30em;
     min-width: 5em;
@@ -109,7 +110,14 @@
     background-color:#fff;
 
 }
-
+.attribute {
+    max-width: 22em;
+    margin: auto;
+    padding: 1em 1em 2em 1em;
+}
+.attribute p {
+    font-size: 1em;
+}
 .order-image-setter {
     margin: 1em 1em 1em 1em;
     height: 5em;
@@ -119,11 +127,20 @@
     display: block;
     
 }
-.order-name-setter {
-    height: 5em;
-    padding-bottom: 1em;
-    padding-top: 1em;
-    float: inherit;
+.static-attribute {
+    display: block;
+}
+.dynamic-attribute{
+    float: right;
+    display: block;
+    font-size: .8em;
+    margin-top: -1em;    
+}
+.attribute-setter {
+    max-width: 22em;
+    margin: auto;
+    height: auto;
+    padding: 2em 1em 2em 1em;
     border-top: .1em solid black;
 }
 .order-title {
@@ -133,17 +150,14 @@
     margin: auto;
 }
 
-.order-information {
+.profile-information {
     padding: 1em;
     max-width: 20em;
     margin: auto;
     font-weight: 100;
     
 }
-.order-information p {
-    height: 1em;
-    font-size: .8em;
-}
+
 #order-shipping {
     float: right;
     text-align: right;
@@ -168,4 +182,24 @@
     right: 0;
     margin: auto;
 
+}
+
+#billing-address_1, #shipping-address_1 {
+    margin-top: -2.6em;
+}
+
+#billing_setter, #shipping-setter {
+    padding-bottom: 2em;
+}
+
+#billing-name, #shipping-name{
+    margin-top: -3.6em 
+}
+
+#billing-address_2, #shipping-address_2 {
+    margin-top: -1.6em;
+}
+
+#billing-address_3, #shipping-address_3 {
+    margin-top: -.6em;
 }

@@ -18,10 +18,10 @@ function orders(){
         dataType: "json",
         url:hurl +"/custom/get-orders-info.php",
         success: function(data){
-            console.log(data);
+            //console.log(data);
         
             for(i=1; i <= Object.keys(data).length; i++){
-                console.log(data[1].billing_info);
+                //console.log(data[1].billing_info);
                 address = "<br>"+data[i].billing_info.address_1+"<br>"+data[i].billing_info.city+
                 ", "+data[i].billing_info.state+" "+data[i].billing_info.postcode;
                 orderId = data[i].order_id;
@@ -42,8 +42,8 @@ function orders(){
                             '</div>'+
                         '</div>'+
                     '</div>');
-                var lineitem = data[i].  items;
-                console.log(lineitem[0].product_id);
+                var lineitem = data[i].items;
+                //console.log(lineitem[0].product_id);
                 for(j=0; j < lineitem.length; j++){
                     itemId = lineitem[j].product_id;
                     itemName = lineitem[j].item_name;
@@ -51,7 +51,7 @@ function orders(){
                     itemtotal = lineitem[j].subtotal;
                     itemImage = lineitem[j].image;
                     var string = "#"+i;
-                    console.log(string);
+                    //console.log(string);
                     $(string).append(
                         '<div class="order-content">'+
                             '<div class="order-image-setter">'+

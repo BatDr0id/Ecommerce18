@@ -5,7 +5,7 @@ function getCategoryItems(){
     if(sessionStorage.getItem(selected)){
         var array = [];
         array = JSON.parse(sessionStorage.getItem(selected));
-        console.log(array);
+        //console.log(array);
         if (selected == 'all'){
             for(i = 0; i < Object.keys(array).length;i++){
                 var name = array[i].name;
@@ -39,7 +39,7 @@ function getCategoryItems(){
         $.ajax({
             type :"GET", dataType: "json" ,url:urlReq,
             success: function(data){
-                console.log(data);
+                //console.log(data);
                 stringify = JSON.stringify(data);
                 sessionStorage.setItem(sessionStorage.getItem('selected'), stringify);
                 for(i = 0; i < Object.keys(data).length;i++){
@@ -64,7 +64,7 @@ function getCategoryItems(){
                 data: {slug: sessionStorage.getItem("selected")},
                 dataType: "json",
                 success: function(data){
-                    console.log(data);
+                    //console.log(data);
                     stringify = JSON.stringify(data);
                     sessionStorage.setItem(sessionStorage.getItem('selected'), stringify);
                     for(i = 0; i < Object.keys(data).length;i++){
@@ -83,18 +83,18 @@ function getCategoryItems(){
         }
     }
     $('.item-post').click(function(e){
-        console.log('click');
-        console.log(e);
+        //console.log('click');
+        //console.log(e);
         var ec = e.currentTarget;
         var sid = ec.getAttribute('item-id');
         var itemArray = [];
-        console.log(sid);
+        //console.log(sid);
            $.ajax({
                 type: 'GET',
                 dataType: 'json',
                 url: hurl+ '/wp-json/wc/v2/products/'+sid+'?'+authkey,
                 success: function(data){
-                    console.log(data);
+                    //console.log(data);
                     var descript = data.description;
                     var $dec = $(descript);
                     var name = data.name;
@@ -104,7 +104,7 @@ function getCategoryItems(){
                     var $image = $($img);
                     $img = $image[0].getAttribute('src');
                     itemArray.push(name, slug, content, $img);
-                    console.log(itemArray);
+                    //console.log(itemArray);
                     sessionStorage.setItem('item-selected', JSON.stringify(itemArray));
                     window.location.href = "item.html";
             }
