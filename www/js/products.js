@@ -1,3 +1,4 @@
+var init = 0;
 function getCategoryItems(){
     var urlReq;
     var stringify;
@@ -39,7 +40,7 @@ function getCategoryItems(){
         $.ajax({
             type :"GET", dataType: "json" ,url:urlReq,
             success: function(data){
-                //console.log(data);
+                console.log(data);
                 stringify = JSON.stringify(data);
                 sessionStorage.setItem(sessionStorage.getItem('selected'), stringify);
                 for(i = 0; i < Object.keys(data).length;i++){
@@ -82,19 +83,37 @@ function getCategoryItems(){
             }); 
         }
     }
+    
+}
+
+function createProduct(id, img, name, price, description, linkToProduct ){
+    
+    $('.item-setter').append(
+        "<div class='item-post' item-id='"+id+"'>"
+        +"<div class = 'item-image-setter'>"
+        +"<img id='item-image' src = '"+ img + "'></div>"
+        +"<div class='item-title-setter'><p>" + name + "</p></div>"
+        +"<div class='item-content-descript'>" + description + "</div></div>"
+        );
+
     $('.item-post').click(function(e){
         //console.log('click');
+        if(init < 1){
         //console.log(e);
+        init++;
+
         var ec = e.currentTarget;
         var sid = ec.getAttribute('item-id');
         var itemArray = [];
         //console.log(sid);
+        
            $.ajax({
                 type: 'GET',
                 dataType: 'json',
                 url: hurl+ '/wp-json/wc/v2/products/'+sid+'?'+authkey,
                 success: function(data){
                     //console.log(data);
+                    var id = data.id;
                     var descript = data.description;
                     var $dec = $(descript);
                     var name = data.name;
@@ -103,23 +122,16 @@ function getCategoryItems(){
                     var $img = $dec[0].innerHTML;
                     var $image = $($img);
                     $img = $image[0].getAttribute('src');
-                    itemArray.push(name, slug, content, $img);
+                    itemArray.push(id, name, slug, content, $img);
                     //console.log(itemArray);
                     sessionStorage.setItem('item-selected', JSON.stringify(itemArray));
                     window.location.href = "item.html";
             }
+           
             });
+        }
+        
         });
-}
-
-function createProduct(id, img, name, price, description, linkToProduct ){
-    $('.item-setter').append(
-        "<div class='item-post' item-id='"+id+"'>"
-        +"<div class = 'item-image-setter'>"
-        +"<img id='item-image' src = '"+ img + "'></div>"
-        +"<div class='item-title-setter'><p>" + name + "</p></div>"
-        +"<div class='item-content-descript'>" + description + "</div></div>"
-        );
 
 }
 

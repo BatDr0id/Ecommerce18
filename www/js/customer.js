@@ -1,20 +1,22 @@
 var selection;
 var data;
-var id, username, first, last;
+var id, username, first, last, image;
 var address, orderId, orderStatus, total, quantity, temp;
 var itemId, itemName, itemQuantity, itemtotal, itemImage
 function initiate(){
     var selection = localStorage.getItem("customer-select");
+    image = sessionStorage.getItem('image');
     $('.title-profile-id').html(sessionStorage.getItem('first') + ' ' + sessionStorage.getItem('last'));
     $('.title-name').html(sessionStorage.getItem('name'));
-    $('.image-setter-image').attr('src', sessionStorage.getItem('image'));
+    $('.image-setter-image').attr('src', image);
     orders();
 }
 function orders(){
     var userid = sessionStorage.getItem('id');
+    console.log(userid);
     $.ajax({
         type: "POST",
-        data: {user_id: sessionStorage.getItem('id')},
+        data: {user_id: userid },
         dataType: "json",
         url:hurl +"/custom/get-orders-info.php",
         success: function(data){

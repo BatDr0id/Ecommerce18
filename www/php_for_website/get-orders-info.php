@@ -85,7 +85,7 @@ if(is_numeric($user_id)){
                 and order_table.post_id = order_info.order_id
                 and order_status.id = order_info.order_id
                 and order_images.image_parent = order_info.product_id
-                and user_id =1
+                and user_id = ?
                 ORDER BY order_item_id DESC');
     mysqli_stmt_bind_param($statement, 's', $user_id);
     mysqli_stmt_execute($statement);
