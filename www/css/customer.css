@@ -1,4 +1,3 @@
-
 .setter {
     max-width: 30em;
     min-width: 5em;
@@ -7,6 +6,7 @@
     left: 0;
     right: 0;
     margin: 3.75em  auto 0 auto;
+    padding: 0em 2em;
 }
 
 .image-setter {
@@ -37,8 +37,15 @@
     height: 7.5em;
 }
 
+.title-divider-main {
+    max-width:12em;
+    height: .2em;
+    background-color: black;
+    display: block;
+    position: relative;
+}
 .title-divider {
-    max-width: 100%;
+    max-width:30em;
     height: .2em;
     background-color: black;
     display: block;
@@ -84,6 +91,7 @@
     font-family: Ebrima;
     font-weight: 1000;
     margin: 1.25em auto 0 auto;
+    padding: 0 2em;
 }
 
 .order-setter {
@@ -120,7 +128,13 @@
     display: block;
     
 }
-
+.order-name-setter {
+    height: 5em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    float: inherit;
+    border-top: .1em solid black;
+}
 .order-title {
     max-width: 20em;
     padding: 1em;
@@ -164,5 +178,3 @@
     margin: auto;
 
 }
-
-

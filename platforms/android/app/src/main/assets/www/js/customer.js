@@ -1,33 +1,40 @@
 var selection;
 var data;
-var id, username, first, last;
-var address, orderId, orderStatus, total, quantity;
+var id, username, first, last, image;
+var address, orderId, orderStatus, total, quantity, temp;
 var itemId, itemName, itemQuantity, itemtotal, itemImage
 function initiate(){
     var selection = localStorage.getItem("customer-select");
+    image = sessionStorage.getItem('image');
     $('.title-profile-id').html(sessionStorage.getItem('first') + ' ' + sessionStorage.getItem('last'));
     $('.title-name').html(sessionStorage.getItem('name'));
-    $('.image-setter-image').attr('src', sessionStorage.getItem('image'));
+    $('.image-setter-image').attr('src', image);
     orders();
 }
 function orders(){
     var userid = sessionStorage.getItem('id');
+    console.log(userid);
     $.ajax({
         type: "POST",
-        data: {user_id: sessionStorage.getItem('id')},
+        data: {user_id: userid },
         dataType: "json",
         url:hurl +"/custom/get-orders-info.php",
         success: function(data){
             console.log(data);
-        
+            
+            
             for(i=1; i <= Object.keys(data).length; i++){
-                console.log(data[1].billing_info);
+                quantity = 0;
+                //console.log(data[1].billing_info);
                 address = "<br>"+data[i].billing_info.address_1+"<br>"+data[i].billing_info.city+
                 ", "+data[i].billing_info.state+" "+data[i].billing_info.postcode;
                 orderId = data[i].order_id;
                 orderStatus = data[i].status;
                 total = data[i].order_total;
-                quantity = data[i].items.length;
+                for(j=0; j < data[i].items.length; j++){
+                    console.log(data[i].items[j].quantity);
+                   quantity += parseInt(data[i].items[j].quantity);
+                }
                 $('.customer-content').append(
                     '<div class="title-divider"></div>'+
                     '<div class="order-setter">'+
@@ -42,8 +49,8 @@ function orders(){
                             '</div>'+
                         '</div>'+
                     '</div>');
-                var lineitem = data[i].  items;
-                console.log(lineitem[0].product_id);
+                var lineitem = data[i].items;
+                //console.log(lineitem[0].product_id);
                 for(j=0; j < lineitem.length; j++){
                     itemId = lineitem[j].product_id;
                     itemName = lineitem[j].item_name;
@@ -51,7 +58,7 @@ function orders(){
                     itemtotal = lineitem[j].subtotal;
                     itemImage = lineitem[j].image;
                     var string = "#"+i;
-                    console.log(string);
+                    //console.log(string);
                     $(string).append(
                         '<div class="order-content">'+
                             '<div class="order-image-setter">'+

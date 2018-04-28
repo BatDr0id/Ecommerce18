@@ -117,3 +117,8 @@ h1 {
 
 
 
+
+.review-name-paragraph {
+    display: inline-block;
+    font-weight: 1000;
+}

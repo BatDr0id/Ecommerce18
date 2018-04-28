@@ -37,14 +37,14 @@ function createAccountMenu() {
                     "<input id='password' type='password' placeholder='Password'>"+
                     "<button class='login-button' type='button'>Login</button>"+
                     "<div class='divider'></div>"+
-                    "<a href=''><div>Sign Up</div></a>"+
-                    "<a href=''><div>Forgot Password?</div></a>"+
-                    "<a href=''><div>Go to our website</div></a>"+
+                    //"<a href=''><div>Sign Up</div></a>"+
+                    "<a href='https://ecommerce18.xyz/my-account/lost-password'><div>Forgot Password?</div></a>"+
+                    "<a href='https://www.ecommerce18.xyz'><div>Go to our website</div></a>"+
                     "<div class='divider'></div>"+
                     "<p id='checkText'>Remember Me</p>"+
                     "<input type='checkbox' id='checkbox'/>"
                 +"</div>"
-            +"</div>"); 
+            +"</div>");
         login = false;
         if(localStorage.getItem('token') && localStorage.getItem('fingerauth') == 'true' && login == false){
                 //alert("4");
@@ -104,13 +104,13 @@ function successEncryption(_fingerResult){
     console.log("successCallback(): " + JSON.stringify(_fingerResult));
     console.log("Stringify " + _fingerResult);
         if (_fingerResult.withFingerprint) {
-            console.log("Successfully encrypted credentials.");
-            console.log("Encrypted credentials: " + _fingerResult.token);
+            //console.log("Successfully encrypted credentials.");
+            //console.log("Encrypted credentials: " + _fingerResult.token);
             localStorage.setItem('token', _fingerResult.token);
             localStorage.setItem('fingerauth', 'true');
-            console.log("Encrypted stuff stored");
+            //console.log("Encrypted stuff stored");
         } else if (_fingerResult.withBackup) {
-            console.log("Authenticated with backup password");
+            //console.log("Authenticated with backup password");
         }
         else {
             localStorage.setItem('token', _fingerResult.token);
@@ -129,7 +129,7 @@ function loginSuccess(id, name, first, last, image, email){
                    "<div class='account-link' slug='orders'><a href='#'>Orders</a></div>"+
                    "<div class='account-link' slug='prof-info'><a href='#'>Profile Info.</a></div>"+
                    "<div class='account-link' slug='downloads'><a href='#'>Downloads</a></div>"+
-                   "<div class='account-link' slug='bill-info'><a href='#'>Billing Info.</a></div>"+
+                   //"<div class='account-link' slug='bill-info'><a href='#'>Billing Info.</a></div>"+
                    "<div class='logout'><a href='#'>Logout</a></div>"+
                 "</div>"+
             "</div>"+
@@ -142,8 +142,16 @@ function loginSuccess(id, name, first, last, image, email){
     $(".account-link").click(function(e){
         e = $(this).attr("slug");
         localStorage.setItem('customer-select', e);
-        window.location.href = "customer-profile.html";
-        
+        if (e == "orders"){
+            window.location.href = "customer-profile.html";
+        }
+        else if (e == 'prof-info'){
+            window.location.href = "profile-info.html";
+        }
+        else if (e == 'downloads'){
+            window.location.href = "customer-downloads.html";
+        }
+        else{}
     });
     $('.logout').click(function(e){
         sessionStorage.removeItem('cookie');
@@ -162,6 +170,7 @@ function loginSuccess(id, name, first, last, image, email){
 
 function fingerRegister(){
     //alert('6');
+    
     if (checkbox == false){
         loginAjax();
     }
@@ -222,7 +231,7 @@ function sessionEncrypt(result){
     else if(result.withFingerprint){
         console.log("authenticated with backup");
         loginAjax();
-    }  
+    }
 }
 function fingerDecrypt(){
     //alert('5');
@@ -250,7 +259,7 @@ function sessionDecrypt(result){
         //alert(result.password);
         if (result.password) {
             //console.log("Successfully decrypted credential token.");
-            //console.log("password: " + result.password);  
+            //console.log("password: " + result.password);
             password = result.password;
             loginAjax();
             

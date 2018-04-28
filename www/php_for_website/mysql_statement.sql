@@ -105,7 +105,7 @@ Select distinct
                 and order_table.post_id = order_info.order_id
                 and order_status.id = order_info.order_id
                 and order_images.image_parent = order_info.product_id
-                and user_id =1
+                and user_id = ?
                 ORDER BY order_item_id DESC
                 
                
